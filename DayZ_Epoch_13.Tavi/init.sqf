@@ -17,7 +17,8 @@ dayz_infectiousWaterholes = false; //Randomly adds some bodies, graves and wreck
 dayz_ForcefullmoonNights = true; // Forces night time to be full moon.
 dayz_randomMaxFuelAmount = 500; //Puts a random amount of fuel in all fuel stations.
 
-
+//Virtual Garage
+DZE_garagist = ["Profiteer4","Worker3","RU_Profiteer4","Hooker1","Worker2"];
 
 
 //DayZMod presets
@@ -135,7 +136,8 @@ progressLoadingScreen 0.2;
 call compile preprocessFileLineNumbers "origins\compiles.sqf";				//Compile regular functions
 call compile preprocessFileLineNumbers "dayz_code\init\variables.sqf";
 progressLoadingScreen 0.05;
-call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
+//call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
+call compile preprocessFileLineNumbers "scripts\garage\publicEH.sqf";
 progressLoadingScreen 0.1;
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
 progressLoadingScreen 0.15;
@@ -199,6 +201,11 @@ call compile preprocessFileLineNumbers "addons\bike\init.sqf";
 [] execVM 'scripts\takeClothes.sqf';
 [] execVM 'scripts\Markers\BanditAir.sqf';
 [] execVM 'scripts\Markers\HeroAir.sqf';
+
+//fast travel
+fn_ftravel = compile preprocessFile "scripts\fasttravel\fn_ftravel.sqf";
+[] execVM 'scripts\fasttravel\FastTravel.sqf';
+
 	
 server_timeSync = {};
 setTerrainGrid 50;
