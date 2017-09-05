@@ -1005,6 +1005,21 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 		s_player_lockvault = -1;
 	};
 
+	//Virtual Garage	
+   	if((_typeOfCursorTarget in DZE_garagist) && (player distance _cursorTarget < 5)) then {
+		if (s_garage_dialog2 < 0) then {
+			s_garage_dialog2 = player addAction ["Vehicle Garage", "scripts\garage\vehicle_dialog.sqf",_cursorTarget, 3, true, true, "", ""];
+		};
+		if (s_garage_dialog < 0) then {
+			s_garage_dialog = player addAction ["Store Vehicle in Garage", "scripts\garage\vehicle_store_list.sqf",_cursorTarget, 3, true, true, "", ""];
+		};
+	} else {
+		player removeAction s_garage_dialog2;
+		s_garage_dialog2 = -1;
+		player removeAction s_garage_dialog;
+		s_garage_dialog = -1;
+	};
+	
 	//Player Deaths
 	if (_typeOfCursorTarget == "Info_Board_EP1") then {
 		if (s_player_information < 0) then {
@@ -1449,6 +1464,10 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 	s_bank_dialog2 = -1;
 	player removeAction s_player_checkWallet;
 	s_player_checkWallet = -1;
+	player removeAction s_garage_dialog2;
+	s_garage_dialog2 = -1;
+	player removeAction s_garage_dialog;
+	s_garage_dialog = -1;
 };
 
 //Dog actions on player self
