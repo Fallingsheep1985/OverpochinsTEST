@@ -28,12 +28,12 @@ DZE_DEPLOYABLES_CONFIG = [
     // deploy a non-permanent bike from a toolbox right in front of the player that can be re-packed by the owner as long as it's under 10% damage
     ["ItemToolbox",[0,6,1],5,1,false,false,false,false,false,true,true,["MMT_Civ"],[],["PartGeneric"],"true"],
 	["ItemToolbox",[0,6,2.2],5,0.3,false,false,false,false,false,true,true,["AH6X_DZ"],[],["PartGeneric","PartEngine","PartVRotor"],"true"],
-	["ItemEtool",[0,6,0],5,-1,false,false,false,true,true,true,false,["Uroven1VelkaBudka"],[],[],"true"]
+	["ItemToolbox",[0,6,2.2],5,0.3,false,false,false,false,false,true,true,["Ka137_PMC"],[],["ItemFuelBarrelEmpty","PartEngine","PartVRotor"],"true"]
 	// deploy Garage
-	//	_clickItem			_deployOffset	_packDistance	_damageLimit	_packAny	_cargo		_ammo	_hive	_plot	_simulation _road	_deployables					_near	_parts				_condition
+//	_clickItem			_deployOffset	_packDistance	_damageLimit	_packAny	_cargo		_ammo	_hive	_plot	_simulation _road	_deployables					_near	_parts				_condition
     //["ItemTrashPaper",	[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["Land_MBG_Garage_Single_C"],	[],		["ItemTrashPaper"],	"true"],
-	//Garage Spawn-Point
-	//["ItemCards",			[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["HeliHCivil"],					[],		["ItemCards"],		"true"]
+	// Garage Spawn-Point
+	//["ItemCards",		[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["HeliHCivil"],					[],		["ItemCards"],		"true"]
 	
 	
     // deploy fortifications from etool 3 meters in front of player that are permanent until server restart
@@ -54,7 +54,7 @@ DZE_DEPLOYABLES_CONFIG = [
     //["ItemToolbox",[0,10,0],5,-1,false,true,false,true,true,false,false,["Land_Mil_Guardhouse"],[],["half_cinder_wall_kit","half_cinder_wall_kit","half_cinder_wall_kit","cinder_door_kit"],"false"],
     //["ItemCrowbar",[0,6,0],5,-1,false,true,false,true,true,false,false,["Land_Misc_Cargo1Ao","Land_Misc_Cargo1Bo"],[],["metal_panel_kit","metal_panel_kit","metal_panel_kit","metal_panel_kit"],"true"]
     //["ItemEtool",[0,8,0],5,-1,false,true,true,true,false,false,["Land_Fort_Watchtower"],[],["forest_large_net_kit","ItemSandbagExLarge5x","ItemSandbagExLarge5x","ItemSandbagExLarge5x"],"true"],
-	//["ItemEtool",[0,8,0],5,-1,false,true,true,true,false,false,["Uroven1VelkaBudka"],[],[],"true"]
+    //["ItemEtool",[0,8,0],5,-1,false,true,true,true,false,false,["Land_fortified_nest_big"],[],["ItemSandbagExLarge5x","ItemSandbagExLarge5x","ItemSandbagExLarge5x"],"true"],
     //["PartWoodPile",[0,2,0],5,1,true,true,true,true,false,false,["Pile_of_wood"],[],["PartWoodPile","PartWoodPile","PartWoodPile","PartWoodPile","PartWoodPile"],"true"],
     //["ItemSapphire",[0,2,0],5,1,true,true,true,true,false,false,["DSHKM_CDF","M2StaticMG","SearchLight_CDF"],[],["ItemSapphire"],"true"]
 ];

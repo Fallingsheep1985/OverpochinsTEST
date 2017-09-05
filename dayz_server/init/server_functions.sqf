@@ -47,15 +47,6 @@ spawn_mineveins = compile preprocessFileLineNumbers "\z\addons\dayz_server\compi
 spawn_roadblocks = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_roadblocks.sqf";
 spawn_vehicles = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_vehicles.sqf";
 
-"extDB" callExtension "9:DATABASE:Database2";
-"extDB" callExtension format["9:ADD:DB_RAW_V2:%1",1];
-"extDB" callExtension "9:LOCK";
-
-server_queryGarageVehicle = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\garage\server_queryGarageVehicle.sqf";
-server_spawnVehicle = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\garage\server_spawnVehicle.sqf";
-server_storeVehicle = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\garage\server_storeVehicle.sqf";
-fn_asyncCall = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\garage\fn_async.sqf";
-
 server_medicalSync = {
 	_player = _this select 0;
 	_array = _this select 1;
@@ -283,7 +274,6 @@ call compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\kk_functio
 #include "spawn_config.sqf"
 [] execVM "\a2_infiSTAR\AH.sqf";
 [] execVM "\z\addons\dayz_server\custom\wall.sqf";
-setTerrainGrid 50;
 
 //time ctrl
  [] spawn {
@@ -294,7 +284,7 @@ setTerrainGrid 50;
   while {true} do {
    _dayTime = dayTime;
    //========================TIME FUNCTION============================
-   _speed = 4.000;
+   _speed = 3.000;
    if (_dayTime >= 8 && _dayTime <= 16) then {_speed =  4.000;};
    if (_dayTime >  4 && _dayTime <   8) then {_speed =  6.666;};
    if (_dayTime > 16 && _dayTime <  20) then {_speed =  6.666;};

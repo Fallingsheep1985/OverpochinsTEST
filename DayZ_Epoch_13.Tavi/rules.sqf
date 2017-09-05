@@ -11,7 +11,6 @@ _messages = [
 	["Server Rules", "No Floating Bases"],
 	["Server Rules", "No Killing Within<br />300m of Trader Cities Safe Zone<br />"],
 	["Server Rules", "No Camping Trader Cities Safe Zones"],
-	["News", "GPS/Server Rules/Info2=Change Log"],
 	["News", "server.steve21k@hotmail.com"]
 ];
  

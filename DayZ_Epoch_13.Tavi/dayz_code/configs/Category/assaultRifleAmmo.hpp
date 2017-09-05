@@ -28,16 +28,31 @@ class Category_621 {
 		type = "trade_items";
 		buy[] = {1000,"worth"};
 		sell[] = {500,"worth"};
+	};	
+	class vil_45Rnd_545x39_AK {
+       type = "trade_items";
+       buy[] = {1000,"worth"};
+       sell[] = {500,"worth"};	
 	};
 	class 30Rnd_545x39_AKSD {
 		type = "trade_items";
 		buy[] = {1500,"worth"};
 		sell[] = {750,"worth"};
+	};	
+	class vil_30Rnd_762x39_AKSD {
+       type = "trade_items";
+      buy[] = {1500,"worth"};
+       sell[] = {750,"worth"};	
 	};
 	class 30Rnd_762x39_AK47 {
 		type = "trade_items";
 		buy[] = {1000,"worth"};
 		sell[] = {500,"worth"};
+	};	
+	class vil_40Rnd_762x39_AK47 {
+       type = "trade_items";
+       buy[] = {1000,"worth"};
+       sell[] = {500,"worth"};	
 	};
 	class 30Rnd_762x39_SA58 {
 		type = "trade_items";
@@ -83,5 +98,20 @@ class Category_621 {
 		type = "trade_items";
 		buy[] = {1500,"worth"};
 		sell[] = {750,"worth"};
+	};	
+	class vil_20Rnd_9x39_SP6_OC {
+       type = "trade_items";
+       buy[] = {1000,"worth"};
+       sell[] = {500,"worth"};
+	};   
+	class vil_20Rnd_9x39_SP6ns_OC {
+       type = "trade_items";
+       buy[] = {1000,"worth"};
+       sell[] = {500,"worth"};
+	};   
+	class vil_20Rnd_9x39_SP6_VAL {
+       type = "trade_items";
+       buy[] = {1000,"worth"};
+       sell[] = {500,"worth"};  
 	};
 };	

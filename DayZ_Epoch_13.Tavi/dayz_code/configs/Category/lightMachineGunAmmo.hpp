@@ -28,6 +28,11 @@ class Category_622 {
 		type = "trade_items";
 		buy[] = {1000,"worth"};
 		sell[] = {500,"worth"};
+	};	
+	class vil_100Rnd_762x39_RPD {
+       type = "trade_items";
+       buy[] = {1000,"worth"};
+       sell[] = {500,"worth"};	
 	};
 	class 100Rnd_762x54_PK {
 		type = "trade_items";
@@ -38,5 +43,10 @@ class Category_622 {
 		type = "trade_items";
 		buy[] ={1000,"Coins"};
 		sell[] ={500,"Coins"};
+	};	
+	class vil_75Rnd_762x39_AK47 {
+       type = "trade_items";
+       buy[] = {1000,"worth"};
+       sell[] = {500,"worth"};	
 	};
 };	

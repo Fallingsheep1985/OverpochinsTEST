@@ -1,14 +1,11 @@
-/*
-	DayZ Base Building
-	Made for DayZ Epoch please ask permission to use/edit/distrubute email vbawol@veteranbastards.com.
-*/
-private ["_location","_dir","_classname","_item","_hasrequireditem","_missing","_hastoolweapon","_cancel","_reason","_started","_finished","_animState","_isMedic","_dis","_sfx","_hasbuilditem","_tmpbuilt","_onLadder","_isWater","_require","_offset","_IsNearPlot","_isOk","_location1","_location2","_counter","_limit","_proceed","_num_removed","_position","_object","_canBuildOnPlot","_friendlies","_nearestPole","_ownerID","_findNearestPoles","_findNearestPole","_distance","_classnametmp","_ghost","_isPole","_needText","_lockable","_zheightchanged","_rotate","_combination_1","_combination_2","_combination_3","_combination_4","_combination","_combination_1_Display","_combinationDisplay","_zheightdirection","_abort","_isNear","_need","_needNear","_vehicle","_inVehicle","_requireplot","_objHDiff","_isLandFireDZ","_isTankTrap","_charID","_name","_objectID","_objectUID","_playerUID","_playerName","_combination","_playerID"];
+private ["_objects","_count","_onLadder","_isWater","_cancel","_reason","_canBuildOnPlot","_vehicle","_inVehicle","_houselevel","_classname","_name","_buildingpart","_charID","_playerUID","_playerName","_abort","_classnametmp","_requireplot","_isAllowedUnderGround","_offset","_isPole","_isLandFireDZ","_distance","_needText","_findNearestPoles","_findNearestPole","_IsNearPlot","_nearestPole","_playerID","_ownerID","_friendlies","_message","_require","_missing","_hasrequireditem","_hastoolweapon","_location","_isOk","_location1","_dir","_object","_position","_objHDiff","_zheightchanged","_zheightdirection","_rotate","_location2","_tmpbuilt","_limit","_proceed","_counter","_dis","_sfx","_started","_finished","_animState","_isMedic","_activatingPlayer"];
 
 if(DZE_ActionInProgress) exitWith { cutText [(localize "str_epoch_player_40") , "PLAIN DOWN"]; };
 DZE_ActionInProgress = true;
 
-// disallow building if too many objects are found within 30m
-if((count ((getPosATL player) nearObjects ["All",30])) >= DZE_BuildingLimit) exitWith {DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_41"), "PLAIN DOWN"];};
+_objects = nearestObjects [player, DZE_maintainClasses, (DZE_PlotPole select 0)];
+_count = count _objects;
+if (_count > DZE_BuildingLimit) exitWith { DZE_ActionInProgress = false; cutText ["\n\nCannot build, too many objects within plot pole area.","PLAIN DOWN"]; };
 
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		dayz_isSwimming;
@@ -40,20 +37,16 @@ closeDialog 1;
 if (_isWater) exitWith {DZE_ActionInProgress = false; cutText [localize "str_player_26", "PLAIN DOWN"];};
 if (_inVehicle) exitWith {DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_42"), "PLAIN DOWN"];};
 if (_onLadder) exitWith {DZE_ActionInProgress = false; cutText [localize "str_player_21", "PLAIN DOWN"];};
-if (player getVariable["combattimeout", 0] >= time) exitWith {DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_43"), "PLAIN DOWN"];};
+if (player getVariable["inCombat",false]) exitWith {DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_43"), "PLAIN DOWN"];};
 
-_crate = (_this select 3 select 0);
-_houselevel = (_this select 3 select 1);
-_classname = (_this select 3 select 2);
-_neededMaterials = (_this select 3 select 3);
-_name = (_this select 3 select 4);
+_houselevel = _this select 0;
+_classname = _this select 1;
+_name = _this select 2;
+_buildingpart = _this select 3;
 _charID = dayz_characterID;
 _playerUID = dayz_playerUID;
 _playerName = (name player);
-[1] call origins_removeActions;
 
-_proceed = [_crate,_neededMaterials] call origins_checkNeededMaterial;
-if(!_proceed) exitWith{DZE_ActionInProgress = false;};
 
 // Need Near Requirements
 _abort = false;
@@ -63,11 +56,13 @@ _classnametmp = _classname;
 
 _requireplot = DZE_requireplot;
 _isAllowedUnderGround = 0;
-if(_classname in DZE_Origins_Stronghold) then {
+
+if (_classname in DZE_Origins_Stronghold) then {
 	_offset = [0,30,0];
 } else {
 	_offset = [0,10,0];
 };
+
 _isPole = (_classname == "Plastic_Pole_EP1_DZ");
 _isLandFireDZ = (_classname == "Land_Fire_DZ");
 
@@ -93,51 +88,33 @@ _IsNearPlot = count (_findNearestPole);
 // If item is plot pole && another one exists within 45m
 if(_isPole && _IsNearPlot > 0) exitWith {  DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_44") , "PLAIN DOWN"]; };
 
-if(_IsNearPlot == 0) then {
+if(_IsNearPlot == 0) then {  // no plot pole close
 	// Allow building of plot
 	if(_requireplot == 0 || _isLandFireDZ) then {
 		_canBuildOnPlot = true;
 	};
-} else {
+} else { // there is a plot pole close
 	// check nearby plots ownership && then for friend status
 	_nearestPole = _findNearestPole select 0;
 
-	// Find owner
-	if(DZE_Use_PlotPole4Life) then {
-		_playerID = getPlayerUID player;
-		_ownerID = _nearestPole getVariable ["ownerPUID","0"];
-	} else {
-		_playerID = dayz_characterID;
-		_ownerID = _nearestPole getVariable ["CharacterID","0"];
-	};
-	// check if friendly to owner
-	if(_playerID == _ownerID) then {  //Keep ownership
+	// Find owner	
+	_hasAccess 	= false;
+	_hasAccess 	= [player, _nearestPole] call FNC_check_access;
+	_allowed 	= ((_hasAccess select 0) or (_hasAccess select 2) or (_hasAccess select 3) or (_hasAccess select 4));
+	// 0= owner + 2= plot owner + 3= plot friends + 4=plot admins  
+	if(_allowed) then {  //Keep ownership
 		// owner can build anything within his plot except other plots
-		if(!_isPole) then {
-			_canBuildOnPlot = true;
-		};
-	} else {
-		// disallow building plot
-		if(!_isPole) then {
-			_friendlies = _nearestPole getVariable ["plotfriends",[]];
-			_fuid  = [];
-			{
-				  _friendUID = _x select 0;
-				  _fuid  =  _fuid  + [_friendUID];
-			} forEach _friendlies;
-
-			// check if friendly to owner
-			if(_ownerID in _fuid) then {
-				_canBuildOnPlot = true;
-			};  
-		};
+		_canBuildOnPlot = true; // 0= owner + 2= plot owner + 3= plot friends + 4=plot admins -> can build
+	};
+	if(_isPole) then { // not if it is a plot
+		_canBuildOnPlot = false;
 	};
 };
 
 // _message
-if(!_canBuildOnPlot) exitWith {  DZE_ActionInProgress = false; cutText [format[(localize "STR_EPOCH_PLAYER_135"),_needText,_distance] , "PLAIN DOWN"]; };
+if (!_canBuildOnPlot) exitWith {  DZE_ActionInProgress = false; cutText [format[(localize "STR_EPOCH_PLAYER_135"),_needText,_distance] , "PLAIN DOWN"]; };
 
-_require = DZE_Origins_Build_Tools_Require;
+_require = ["ItemToolbox","ItemEtool","ItemSledge"];
 _missing = "";
 _hasrequireditem = true;
 {
@@ -288,7 +265,7 @@ if (_hasrequireditem) then {
 			deleteVehicle _object;
 		};
 
-		if (player getVariable["combattimeout", 0] >= time) exitWith {
+		if (player getVariable["inCombat",false]) exitWith {
 			_isOk = false;
 			_cancel = true;
 			_reason = (localize "str_epoch_player_43");
@@ -320,7 +297,7 @@ if (_hasrequireditem) then {
 		// Start Build
 		_tmpbuilt = createVehicle [_classname, _location, [], 0, "CAN_COLLIDE"];
 
-		_tmpbuilt setdir _dir;
+		_tmpbuilt setDir _dir;
 
 		// Get position based on object
 		_location = _position;
@@ -354,7 +331,7 @@ if (_hasrequireditem) then {
 
 		while {_isOk} do {
 
-			[10,10] call dayz_HungerThirst;
+			//[10,10] call dayz_HungerThirst;
 			player playActionNow "Medic";
 
 			_dis=20;
@@ -377,7 +354,7 @@ if (_hasrequireditem) then {
 					r_doLoop = false;
 					_finished = true;
 				};
-				if (r_interrupt || (player getVariable["combattimeout", 0] >= time)) then {
+				if (r_interrupt || (player getVariable["inCombat",false])) then {
 					r_doLoop = false;
 				};
 				if (DZE_cancelBuilding) exitWith {
@@ -413,7 +390,7 @@ if (_hasrequireditem) then {
 				[] spawn player_plotPreview;
 			};
 
-			if(_classname in DZE_Origins_Stronghold) then {
+			if (_classname in DZE_Origins_Stronghold) then {
 				private["_combination_1","_combination_2","_combination_3","_combination_4","_combination_5","_combination_6"];
 				_combination = "";
 				_combination_1 = ceil(random 9);
@@ -429,14 +406,21 @@ if (_hasrequireditem) then {
 				dayz_combination = _combination;
 			
 			};
-			_tmpbuilt setVariable ["OEMPos",_location,true];
-			_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
+			_combination_1 = floor(random 10);
+			_combination_2 = floor(random 10);
+			_combination_3 = floor(random 10);
+			_combination_4 = floor(random 10);
+			
+			_combination = format["%1%2%3%4",_combination_1,_combination_2,_combination_3,_combination_4];
+			_tmpbuilt setVariable ["OEMPos",_location,true];							
+			_tmpbuilt setVariable ["CharacterID",_combination,true]; //set combination as a character ID
 			_tmpbuilt setVariable ["OwnerUID",_playerUID, true];
+			_tmpbuilt setVariable ["ownerPUID",_playerUID, true];			
 			_tmpbuilt setVariable ["OwnerName",_playerName, true];
 			_activatingPlayer = player;
-				
-			_proceed = [_crate,_neededMaterials] call origins_checkNeededMaterial;
-			if(_proceed) then {
+			dayz_combination = _combination;
+			
+			if (_proceed && (_buildingpart in magazines player)) then {
 				switch (_houselevel) do {
 					case 'B1' : {
 						owner_B1 set [count owner_B1, _playerUID];
@@ -493,29 +477,26 @@ if (_hasrequireditem) then {
 						player setVariable["DZE_Origins_SH",true,true];
 					};
 				};
-				if(_classname in DZE_Origins_Stronghold) then {
-					PVDZE_veh_Publish = [_tmpbuilt,[_dir,_location],_classname,true,_combination,_activatingPlayer];
+				if (_classname in DZE_Origins_Stronghold) then {
+					PVDZE_veh_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,dayz_combination,_activatingPlayer];
 					publicVariableServer  "PVDZE_veh_Publish";
-					cutText [format[(localize "str_epoch_player_140"),_combination,_name], "PLAIN DOWN", 5];
+					player removeMagazine _buildingpart;
+					player removeMagazine "ItemEmerald";
+					cutText [format[(localize "str_epoch_player_140"),dayz_combination,_name], "PLAIN DOWN", 5];
+					systemChat format["You have setup your %2. Combination is %1",dayz_combination,_name];					
+					uiSleep 5;
+					//[player,3] call GiveXP;
 				} else {
-					PVDZE_veh_Publish = [_tmpbuilt,[_dir,_location],_classname,true,_charID,_activatingPlayer];
+					PVDZE_veh_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,_charID,_activatingPlayer];
 					publicVariableServer  "PVDZE_veh_Publish";
-					cutText [format["Nice one! You now have a %1", _name], "PLAIN DOWN",5];
+					player removeMagazine _buildingpart;
+					//cutText [format["You have build %1. DO NOT place gear in Origins buildings! Items wont safe!", _name], "PLAIN DOWN",5];
+					//systemChat format["You have build %1. DO NOT place gear in Origins buildings! Items wont safe!", _name];					
 				};
-				clearWeaponCargoGlobal  _crate;
-				clearMagazineCargoGlobal  _crate;
-				clearBackpackCargoGlobal _crate;
-				
-				_objectID = _crate getVariable["ObjectID","0"];
-				_objectUID = _crate getVariable["ObjectUID","0"];
-				PVDZE_obj_Delete = [_objectID,_objectUID,_activatingPlayer];
-				publicVariableServer "PVDZE_obj_Delete";
-				if (isServer) then {
-					PVDZE_obj_Delete call server_deleteObj;
-				};
-				deleteVehicle _crate; 
+ 
 			} else {
 				deleteVehicle _tmpbuilt;
+				cutText [(localize "str_epoch_player_46") , "PLAIN DOWN"];
 			};
 
 		} else {

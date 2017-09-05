@@ -6,4 +6,4 @@ _MARKERNAME setMarkerType "mil_dot";
 _MARKERNAME setMarkerColor "ColorGreen";
 _MARKERNAME setMarkerBrush "Solid";
 _MARKERNAME setMarkerSize [1,1];
-//MARKERNAME = _Hero Air Trader;
+MARKERNAME = _Hero Air Trader;

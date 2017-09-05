@@ -23,7 +23,8 @@ DZE_CLICK_ACTIONS = [
 ["Binocular_Vector","Look @ 4000m","execVM 'overwrites\click_actions\scripts\4000.sqf'","true"],
 ["Binocular_Vector","Look @ 5000m","execVM 'overwrites\click_actions\scripts\5000.sqf'","true"],
 
-["ItemKnife","Hero Level 1 House","['H1',5000,'Uroven1VelkaBudka','ItemKnife','Hero Level 1 House','house'] execVM 'origins\build_it.sqf';",		"true"],
+["ItemGPS","Grass On","setTerrainGrid 25; systemChat('Warning: Grass WILL lower your FPS!');","true"],
+["ItemGPS","Grass Off","setTerrainGrid 50; systemChat('Grass is now off!');","true"],
 
 ["Binocular","Look @ 600m","execVM 'overwrites\click_actions\scripts\600.sqf'","true"],
 ["Binocular","Look @ 800m","execVM 'overwrites\click_actions\scripts\800.sqf'","true"],
@@ -37,7 +38,6 @@ DZE_CLICK_ACTIONS = [
 ["Binocular","Look @ 4000m","execVM 'overwrites\click_actions\scripts\4000.sqf'","true"],
 
 ["ItemGPS","Locate vehicle","execVM 'scripts\locate_vehicle.sqf'","true"],
-["ItemGPS","Fast Travel","execVM 'scripts\fasttravel\opendialog.sqf'","true"],
 ["ItemGPS","Server Rules","execVM 'custom\menu\menu_init.sqf'","true"],
 
 ["ItemKnife","Harvest weed","execVM 'scripts\weed\hemp.sqf'","true"],

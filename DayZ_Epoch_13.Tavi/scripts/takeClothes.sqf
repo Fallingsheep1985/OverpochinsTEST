@@ -5,7 +5,7 @@ private ["_animState","_body","_clothesTaken","_finished","_isMedic","_itemNew",
 
 if (dayz_actionInProgress) exitWith {"You are already performing an action, wait for the current action to finish." call dayz_rollingMessages;};
 dayz_actionInProgress = true;
-_body = []; // fix RPT spam
+
 _body = _this select 3;
 
 player removeAction s_player_clothes;

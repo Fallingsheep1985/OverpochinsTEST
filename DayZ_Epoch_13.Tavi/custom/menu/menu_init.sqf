@@ -3,11 +3,11 @@ disableSerialization;
 //////Config//////
 /////////////////
 
-_serverName = "Life or die"; // the server name that will go accross the top of the menu
+_serverName = ""; // the server name that will go accross the top of the menu
 
-_ts3IP = "TS3 - TS3.yoursite.com"; // ts3 ip that will go at the bottom of the menu
+_ts3IP = ""; // ts3 ip that will go at the bottom of the menu
 
-_websiteUrl = "www.google.com"; // website url that goes at the bottom of the menu 
+_websiteUrl = ""; // website url that goes at the bottom of the menu 
 
 
 ////////////////////////////////////////////
@@ -23,7 +23,7 @@ action2script = {((ctrlParent (_this select 0)) closeDisplay 7777); execvm 'scri
 _info1Text = "Rules"; //Text that will go on info button 1
 info1script = {((ctrlParent (_this select 0)) closeDisplay 7777); execvm 'custom\menu\rules_init.sqf';}; //script that info button 1 will use
 
-_info2Text = "Info 2"; //Text that will go on info button 2
+_info2Text = "Change Log"; //Text that will go on info button 2
 info2script = {((ctrlParent (_this select 0)) closeDisplay 7777); execvm 'custom\menu\Info2_init.sqf';}; //script that action button 2 will use
 
 _info3Text = "Info 3"; //Text that will go on info button 3

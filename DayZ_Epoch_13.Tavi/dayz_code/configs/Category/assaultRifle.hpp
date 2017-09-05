@@ -47,7 +47,17 @@ class Category_485 {
 	class M16A4 {
 		type = "trade_weapons";
 		buy[] ={20000,"Coins"};
-		sell[] ={10000,"Coins"};	
+		sell[] ={10000,"Coins"};
+	};	
+	class M16A4_ACOG_DZ {
+       type = "trade_weapons";
+       buy[] = {20000,"worth"};
+       sell[] = {10000,"worth"};
+	 };  
+	 class M16A2_GL_DZ {
+       type = "trade_weapons";
+       buy[] = {20000,"worth"};
+       sell[] = {10000,"worth"};  
 	};
 	class M16A4_DZ {
 		type = "trade_weapons";
@@ -72,7 +82,12 @@ class Category_485 {
 	class M4A1_Aim_camo {
 		type = "trade_weapons";
 		buy[] ={20000,"Coins"};
-		sell[] ={10000,"Coins"};	
+		sell[] ={10000,"Coins"};
+	};	
+	class M4A1_CCO_DZ {
+       type = "trade_weapons";
+       buy[] = {20000,"worth"};
+       sell[] = {10000,"worth"};	
 	};
 	class M4A1_DZ {
 		type = "trade_weapons";
@@ -338,5 +353,20 @@ class Category_485 {
 		type = "trade_weapons";
 		buy[] ={20000,"Coins"};
 		sell[] ={10000,"Coins"};
+	};	
+	class vil_Groza_HG {
+       type = "trade_weapons";
+       buy[] = {20000,"worth"};
+       sell[] = {10000,"worth"};
+	};  
+	class vil_Groza_SD {
+       type = "trade_weapons";
+       buy[] = {30000,"worth"};
+       sell[] = {15000,"worth"};
+	};  
+	class vil_M76 {
+       type = "trade_weapons";
+       buy[] = {20000,"worth"};
+       sell[] = {10000,"worth"};  
 	};
 };	

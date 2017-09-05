@@ -18,8 +18,8 @@ DZMSProtectObj = {
 
 
 
-_coords = [[22162.9,19852.4,0.001],[22300.2,19961.8,0.001]] call BIS_fnc_selectRandom; //frente prefeitura - casas OK
-_coords2 = [[22462.4,19499.4,0.001],[22539.1,19900.4,0.001] ] call BIS_fnc_selectRandom; //quadrado - antena - 
+_coords  = [[22162.9,19852.4,0.001],[22300.2,19961.8,0.001]] call BIS_fnc_selectRandom; //frente prefeitura - casas OK
+_coords2 = [[22462.4,19499.4,0.001],[22539.1,19900.4,0.001]] call BIS_fnc_selectRandom; //quadrado - antena - 
 _coords3 = [[22491.3,20059.3,0.001],[22158.2,19519.1,0.001]] call BIS_fnc_selectRandom; //container - escola
 _coords4 = [[22805.9,19853.7,0.001],[22147.2,19933.2,0.001]] call BIS_fnc_selectRandom; //hotel - oficina
 
@@ -45,11 +45,11 @@ _crate addWeaponCargoGlobal ["FN_FAL_ANPVS4", 2];
 _crate addWeaponCargoGlobal ["FN_FAL", 2];
 
 //PISTOLAS
-_crate addWeaponCargoGlobal ["glock17_EP1", 4];
-_crate addWeaponCargoGlobal ["M9", 4];
-_crate addWeaponCargoGlobal ["M9SD", 4];
-_crate addWeaponCargoGlobal ["UZI_SD_EP1", 4];
-_crate addWeaponCargoGlobal ["MakarovSD", 4];
+_crate addWeaponCargoGlobal ["glock17_EP1", 2];
+_crate addWeaponCargoGlobal ["M9", 2];
+_crate addWeaponCargoGlobal ["M9SD", 2];
+_crate addWeaponCargoGlobal ["UZI_SD_EP1", 2];
+_crate addWeaponCargoGlobal ["MakarovSD", 2];
 
 //ITEM MÉDICO
 _crate addMagazineCargoGlobal ["ItemBandage", 5];
@@ -67,7 +67,7 @@ _crate addMagazineCargoGlobal ["PartGeneric", 20];
 _crate addMagazineCargoGlobal ["ItemSandbag", 20];
 _crate addMagazineCargoGlobal ["ItemWire", 20];
 _crate addMagazineCargoGlobal ["30m_plot_kit", 2];
-_crate addMagazineCargoGlobal ["30m_plot_kit", 2];
+_crate addMagazineCargoGlobal ["ItemBriefcase100oz", 2];
 
 //ITEM TOOLBELT
 _crate addWeaponCargoGlobal ["ItemToolbox", 2];
@@ -85,6 +85,11 @@ _crate addMagazineCargoGlobal ["Skin_GUE_Soldier_Sniper_DZ", 2];
 //BACKPACKS
 _crate addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 2];
 _crate addBackpackCargoGlobal ["DZ_CivilBackpack_EP1", 2];
+
+//Launcher
+_crate addWeaponCargoGlobal ["Javelin", 1];
+//Ammo
+_crate addMagazineCargoGlobal ["Javelin", 2];
 
 [_crate] call DZMSProtectObj;
 _crate setDir -28.85478;
@@ -135,7 +140,7 @@ _crate2 addMagazineCargoGlobal ["ItemAntibiotic", 5];
 _crate2 addMagazineCargoGlobal ["ItemBloodbag", 5];
 
 //ITENS NORMAIS
-_crate2 addMagazineCargoGlobal ["CinderBlocks", 20];
+_crate addMagazineCargoGlobal ["CinderBlocks", 20];
 _crate2 addMagazineCargoGlobal ["PartGeneric", 20];
 _crate2 addMagazineCargoGlobal ["ItemSandbag", 20];
 _crate2 addMagazineCargoGlobal ["MortarBucket", 20];
@@ -159,6 +164,11 @@ _crate2 addMagazineCargoGlobal ["Skin_GUE_Soldier_Sniper_DZ", 2];
 //BACKPACKS
 _crate2 addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 2];
 _crate2 addBackpackCargoGlobal ["DZ_CivilBackpack_EP1", 2];
+
+//Launcher
+_crate2 addWeaponCargoGlobal ["SMAW", 1];
+//Ammo
+_crate2 addMagazineCargoGlobal ["SMAW_HEAA", 2];
 
 [_crate2] call DZMSProtectObj;
 _crate2 setDir -28.85478;
@@ -228,6 +238,11 @@ _crate3 addWeaponCargoGlobal ["ItemMatchbox_DZE", 2];
 _crate3 addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 1];
 _crate3 addBackpackCargoGlobal ["DZ_CivilBackpack_EP1", 1];
 
+//Launcher
+_crate3 addWeaponCargoGlobal ["Stinger", 1];
+//Ammo
+_crate3 addMagazineCargoGlobal ["Stinger", 2];
+
 [_crate3] call DZMSProtectObj;
 _crate3 setDir -28.85478;
 
@@ -293,6 +308,11 @@ _crate4 addWeaponCargoGlobal ["ItemMatchbox_DZE", 2];
 //BACKPACKS
 _crate4 addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 1];
 _crate4 addBackpackCargoGlobal ["DZ_CivilBackpack_EP1", 1];
+
+//Launcher
+_crate4 addWeaponCargoGlobal ["RPG18", 1];
+//Ammo
+_crate4 addMagazineCargoGlobal ["RPG18", 2];
 
 [_crate4] call DZMSProtectObj;
 _crate4 setDir -28.85478;
