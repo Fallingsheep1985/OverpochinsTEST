@@ -202,9 +202,9 @@ call compile preprocessFileLineNumbers "addons\bike\init.sqf";
 [] execVM 'scripts\Markers\BanditAir.sqf';
 [] execVM 'scripts\Markers\HeroAir.sqf';
 
-//fast travel
-fn_ftravel = compile preprocessFile "scripts\fasttravel\fn_ftravel.sqf";
-[] execVM 'scripts\fasttravel\FastTravel.sqf';
+//sheep custom fast travel
+[] execVM 'scripts\fasttravel\Travel.sqf';
+
 
 	
 server_timeSync = {};
