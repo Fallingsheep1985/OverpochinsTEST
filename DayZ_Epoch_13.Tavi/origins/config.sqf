@@ -77,5 +77,6 @@ DZE_Origins_Garages= ["malaGaraz","velkaGaraz","kingramida","Uroven3DrevenyDomek
 DZE_Origins_Stronghold = ["krepost"];
 DZE_Origins_Buildings = DZE_Origins_Houses + DZE_Origins_Garages + DZE_Origins_Stronghold;
 
-dayz_updateObjects = dayz_updateObjects + DZE_Origins_Buildings;
+//dayz_allowedObjects --> DayZ_SafeObjects
+DayZ_SafeObjects = DayZ_SafeObjects + DZE_Origins_Buildings;
 diag_log("Origins Base Building Config initialized!");
