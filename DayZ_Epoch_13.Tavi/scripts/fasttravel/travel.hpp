@@ -13,6 +13,7 @@ class MyRscFrame
 class RscDisplayTravel
 {
    idd = TRAVEL_DIALOG;
+   idc = 90000;
    movingenable = 0;
 
    class Controls
@@ -20,7 +21,7 @@ class RscDisplayTravel
 		class RscBackground_5000: RscBackground
 		{
 		idc = 5000;
-		colorBackground[] = {0,0,0,1};
+		colorBackground[] = {0,0,0,0};
 		colorText[] = {1,1,1,1};
 		x = 0.32375 * safezoneW + safezoneX;
 		y = 0.3355 * safezoneH + safezoneY;
@@ -47,6 +48,8 @@ class RscDisplayTravel
 		y = 0.5705 * safezoneH + safezoneY;
 		w = 0.05875 * safezoneW;
 		h = 0.0235 * safezoneH;
+		colorText[] = {1,1,1,1};
+		colorBackground[] = {.384,.702,.886,.8};
 		action = "_nil=[]Spawn fnc_travel_Sabina";
 		};
 		class travel_BTN2: RscButton
@@ -57,6 +60,8 @@ class RscDisplayTravel
 		y = 0.5705 * safezoneH + safezoneY;
 		w = 0.05875 * safezoneW;
 		h = 0.0235 * safezoneH;
+		colorText[] = {1,1,1,1};
+		colorBackground[] = {.384,.702,.886,.8};
 		action = "_nil=[]Spawn fnc_travel_Martin";
 		};
 		class travel_BTN3: RscButton
@@ -67,6 +72,8 @@ class RscDisplayTravel
 		y = 0.5705 * safezoneH + safezoneY;
 		w = 0.05875 * safezoneW;
 		h = 0.0235 * safezoneH;
+		colorText[] = {1,1,1,1};
+		colorBackground[] = {.384,.702,.886,.8};
 		action = "_nil=[]Spawn fnc_travel_Dalnogorsk";
 		};
 		class travel_BTN4: RscButton
@@ -77,6 +84,8 @@ class RscDisplayTravel
 		y = 0.5705 * safezoneH + safezoneY;
 		w = 0.05875 * safezoneW;
 		h = 0.0235 * safezoneH;
+		colorText[] = {1,1,1,1};
+		colorBackground[] = {.384,.702,.886,.8};
 		action = "_nil=[]Spawn fnc_travel_Yaroslav";
 		};
    };

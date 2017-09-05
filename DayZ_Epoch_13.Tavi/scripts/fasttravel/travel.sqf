@@ -1,54 +1,42 @@
 
-//CONFIG
-traveldelay = 10; // how long to wait before travel
-multitraveldelay = 30; // how long after fast traveling before you can do it again
-
 fnc_can_travel = {
 //Cant travel in vehicle
 	if !(vehicle player == player) exitWith {
 		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not travel while you are in a vehicle!";
 		hint _txt;
+		closeDialog 90000;
 	};
 //Cant travel in combat
 	if !(player getVariable["inCombat",false]) exitWith {
-			_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not travel while you are in a vehicle!";
-			hint _txt;
-	};
-	if !(canmultitravel) exitWith {
-		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not fast travel so quickly!";
-			hint _txt;
-	};
-};
-
-fnc_cancel_moved = {
-	_posPlayer = position player;
-//Cant Travel when moving			
-	if !(_posPlayer isEqualTo (position player)) exitWith {
-		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Do not move while traveling.";
+		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not travel while you are in a vehicle!";
 		hint _txt;
+		closeDialog 90000;
 	};
 };
 
 fnc_travel_warning = {
-		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Travel commencing in 10 seconds. DO NOT MOVE!";
+		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Travel commencing in 10 seconds.";
+		hint _txt;
+		closeDialog 90000;
+};
+fnc_travel_warning5 = {
+		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Travel commencing in 5 seconds.";
+		hint _txt;
+};
+fnc_travel_warning1 = {
+		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Travel commencing!";
 		hint _txt;
 };
 
-fnc_multitravel = {
-	canmultitravel = false;
-	sleep multitraveldelay;
-	canmultitravel = true;
-};
-
 fnc_checks = {
-//check if player has already travelled
-	call fnc_multitravel;
 	//check if player can travel	
 	call fnc_can_travel;
 	call fnc_travel_warning;
-	sleep traveldelay;
-	//check if player moved
-	call fnc_cancel_moved;
+	sleep 5;
+	call fnc_travel_warning5;
+	sleep 4;
+	call fnc_travel_warning1;
+	
 };
 
 //SABINA
