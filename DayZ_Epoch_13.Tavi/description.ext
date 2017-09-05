@@ -1,4 +1,5 @@
 #include "defines.hpp"
+#include "scripts\fasttravel\FastTravelDialog.hpp"
 respawn = "BASE";
 respawnDelay = 0;
 respawnDialog = 0;
@@ -47,7 +48,7 @@ class CfgSounds
 
 class RscTitles {
     #include "dayz_code\configs\zschud.hpp"
-	#include "dialogs\FastTravelHUD.hpp"
+	#include "scripts\fasttravel\FastTravelHUD.hpp"
 	class wm_disp {
 		idd = -1;
 		onLoad = "uiNamespace setVariable ['wm_disp', _this select 0]";
@@ -98,4 +99,3 @@ class RscTitles {
 #include "scripts\garage\common.hpp"
 #include "scripts\garage\vehicle_garage.hpp"
 
-#include "scripts\fasttravel\travel.hpp"

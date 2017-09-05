@@ -203,7 +203,7 @@ call compile preprocessFileLineNumbers "addons\bike\init.sqf";
 [] execVM 'scripts\Markers\HeroAir.sqf';
 
 //sheep custom fast travel
-[] execVM 'scripts\fasttravel\Travel.sqf';
+fn_ftravel = compile preprocessFile "scripts\fasttravel\fn_ftravel.sqf";
 
 
 	

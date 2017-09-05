@@ -1,1 +1,1 @@
-createDialog "RscDisplayTravel";
+createDialog "ETG_FastTravelSystem_Dialog";

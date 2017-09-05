@@ -38,6 +38,7 @@ DZE_CLICK_ACTIONS = [
 ["Binocular","Look @ 4000m","execVM 'overwrites\click_actions\scripts\4000.sqf'","true"],
 
 ["ItemGPS","Locate vehicle","execVM 'scripts\locate_vehicle.sqf'","true"],
+["ItemGPS","Fast Travel Test","execVM 'scripts\fasttravel\opendialog.sqf'","true"],
 ["ItemGPS","Server Rules","execVM 'custom\menu\menu_init.sqf'","true"],
 
 ["ItemKnife","Harvest weed","execVM 'scripts\weed\hemp.sqf'","true"],
