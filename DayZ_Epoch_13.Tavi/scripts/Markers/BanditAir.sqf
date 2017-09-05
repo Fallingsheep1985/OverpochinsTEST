@@ -6,4 +6,4 @@ _MARKERNAME setMarkerType "mil_dot";
 _MARKERNAME setMarkerColor "ColorRed";
 _MARKERNAME setMarkerBrush "Solid";
 _MARKERNAME setMarkerSize [1,1];
-MARKERNAME = _Bandit Air Trader;
+//MARKERNAME = _Bandit Air Trader;
