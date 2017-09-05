@@ -37,6 +37,8 @@ class RscDisplayTravel
 		w = 0.367188 * safezoneW;
 		h = 0.3055 * safezoneH;
 		};
+		
+		
 		class travel_BTN1: RscButton
 		{
 		idc = 1600;

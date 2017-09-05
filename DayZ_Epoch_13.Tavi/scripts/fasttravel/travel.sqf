@@ -1,6 +1,7 @@
 
 //CONFIG
 traveldelay = 10; // how long to wait before travel
+multitraveldelay = 30; // how long after fast traveling before you can do it again
 
 fnc_can_travel = {
 //Cant travel in vehicle
@@ -11,6 +12,10 @@ fnc_can_travel = {
 //Cant travel in combat
 	if !(player getVariable["inCombat",false]) exitWith {
 			_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not travel while you are in a vehicle!";
+			hint _txt;
+	};
+	if !(canmultitravel) exitWith {
+		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not fast travel so quickly!";
 			hint _txt;
 	};
 };
@@ -25,16 +30,25 @@ fnc_cancel_moved = {
 };
 
 fnc_travel_warning = {
-_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Travel commencing in 10 seconds. DO NOT MOVE!";
+		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Travel commencing in 10 seconds. DO NOT MOVE!";
 		hint _txt;
-}:
+};
+
+fnc_multitravel = {
+	canmultitravel = false;
+	sleep multitraveldelay;
+	canmultitravel = true;
+};
 
 fnc_checks = {
-	//check if player can travel
-	call fnc_can_travel
+//check if player has already travelled
+	call fnc_multitravel;
+	//check if player can travel	
+	call fnc_can_travel;
+	call fnc_travel_warning;
 	sleep traveldelay;
 	//check if player moved
-	call fnc_cancel_moved
+	call fnc_cancel_moved;
 };
 
 //SABINA

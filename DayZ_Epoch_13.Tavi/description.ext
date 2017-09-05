@@ -98,4 +98,4 @@ class RscTitles {
 #include "scripts\garage\common.hpp"
 #include "scripts\garage\vehicle_garage.hpp"
 
-#include "dialogs\FastTravelDialog.hpp"
+#include "scripts\fasttravel\travel.hpp"
