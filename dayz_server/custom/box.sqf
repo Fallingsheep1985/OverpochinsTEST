@@ -135,13 +135,13 @@ _crate2 addMagazineCargoGlobal ["ItemAntibiotic", 5];
 _crate2 addMagazineCargoGlobal ["ItemBloodbag", 5];
 
 //ITENS NORMAIS
-_crate5 addMagazineCargoGlobal ["CinderBlocks", 20];
-_crate5 addMagazineCargoGlobal ["PartGeneric", 20];
-_crate5 addMagazineCargoGlobal ["ItemSandbag", 20];
-_crate5 addMagazineCargoGlobal ["MortarBucket", 20];
-_crate5 addMagazineCargoGlobal ["ItemWire", 20];
-_crate5 addMagazineCargoGlobal ["30m_plot_kit", 2];
-_crate5 addMagazineCargoGlobal ["ItemBriefcase100oz", 2];
+_crate2 addMagazineCargoGlobal ["CinderBlocks", 20];
+_crate2 addMagazineCargoGlobal ["PartGeneric", 20];
+_crate2 addMagazineCargoGlobal ["ItemSandbag", 20];
+_crate2 addMagazineCargoGlobal ["MortarBucket", 20];
+_crate2 addMagazineCargoGlobal ["ItemWire", 20];
+_crate2 addMagazineCargoGlobal ["30m_plot_kit", 2];
+_crate2 addMagazineCargoGlobal ["ItemBriefcase100oz", 2];
 
 //ITEM TOOLBELT
 _crate2 addWeaponCargoGlobal ["ItemToolbox", 2];
@@ -210,13 +210,13 @@ _crate3 addMagazineCargoGlobal ["ItemAntibiotic", 5];
 _crate3 addMagazineCargoGlobal ["ItemBloodbag", 5];
 
 //ITENS NORMAIS
-_crate5 addMagazineCargoGlobal ["CinderBlocks", 20];
-_crate5 addMagazineCargoGlobal ["PartGeneric", 20];
-_crate5 addMagazineCargoGlobal ["ItemSandbag", 20];
-_crate5 addMagazineCargoGlobal ["MortarBucket", 20];
-_crate5 addMagazineCargoGlobal ["ItemWire", 20];
-_crate5 addMagazineCargoGlobal ["30m_plot_kit", 2];
-_crate5 addMagazineCargoGlobal ["ItemBriefcase100oz", 2];
+_crate3 addMagazineCargoGlobal ["CinderBlocks", 20];
+_crate3 addMagazineCargoGlobal ["PartGeneric", 20];
+_crate3 addMagazineCargoGlobal ["ItemSandbag", 20];
+_crate3 addMagazineCargoGlobal ["MortarBucket", 20];
+_crate3 addMagazineCargoGlobal ["ItemWire", 20];
+_crate3 addMagazineCargoGlobal ["30m_plot_kit", 2];
+_crate3 addMagazineCargoGlobal ["ItemBriefcase100oz", 2];
 
 //ITEM TOOLBELT
 _crate3 addWeaponCargoGlobal ["ItemCrowbar", 2];
@@ -276,13 +276,13 @@ _crate4 addMagazineCargoGlobal ["ItemAntibiotic", 5];
 _crate4 addMagazineCargoGlobal ["ItemBloodbag", 5];
 
 //ITENS NORMAIS
-_crate5 addMagazineCargoGlobal ["CinderBlocks", 20];
-_crate5 addMagazineCargoGlobal ["PartGeneric", 20];
-_crate5 addMagazineCargoGlobal ["ItemSandbag", 20];
-_crate5 addMagazineCargoGlobal ["MortarBucket", 20];
-_crate5 addMagazineCargoGlobal ["ItemWire", 20];
-_crate5 addMagazineCargoGlobal ["30m_plot_kit", 2];
-_crate5 addMagazineCargoGlobal ["ItemBriefcase100oz", 2];
+_crate4 addMagazineCargoGlobal ["CinderBlocks", 20];
+_crate4 addMagazineCargoGlobal ["PartGeneric", 20];
+_crate4 addMagazineCargoGlobal ["ItemSandbag", 20];
+_crate4 addMagazineCargoGlobal ["MortarBucket", 20];
+_crate4 addMagazineCargoGlobal ["ItemWire", 20];
+_crate4 addMagazineCargoGlobal ["30m_plot_kit", 2];
+_crate4 addMagazineCargoGlobal ["ItemBriefcase100oz", 2];
 
 //ITEM TOOLBELT
 _crate4 addWeaponCargoGlobal ["ItemCrowbar", 2];
