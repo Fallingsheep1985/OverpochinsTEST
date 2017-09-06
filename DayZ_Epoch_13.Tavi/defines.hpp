@@ -171,10 +171,6 @@ class RscButton
     colorFocused[] ={0,0,0,1};
     colorShadow[] ={0,0,0,0};
     colorBorder[] ={0,0,0,1};
-    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
-    soundPush[] ={"\A3\ui_f\data\sound\RscButton\soundPush",0.09, 1};
-    soundClick[] ={"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
-    soundEscape[] ={"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
     style = 2;
     x = 0;
     y = 0;
@@ -188,6 +184,11 @@ class RscButton
     offsetPressedX = 0;
     offsetPressedY = 0;
     borderSize = 0;
+	soundPush[] = { "", 0, 1 };
+	soundEnter[] =	{ "", 0, 1 };
+	soundClick[] ={ "", 0, 1 };
+	soundEscape[] ={ "", 0, 1 };
+	sound[] ={ "", 0, 1 };
 };
 class RscShortcutButton
 {
@@ -539,12 +540,6 @@ class RscShortcutButtonMain
           right = 0.005;
           bottom = 0;
        };
-       animTextureNormal = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButtonMain\normal_ca.paa";
-       animTextureDisabled = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButtonMain\disabled_ca.paa";
-       animTextureOver = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButtonMain\over_ca.paa";
-       animTextureFocused = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButtonMain\focus_ca.paa";
-       animTexturePressed = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButtonMain\down_ca.paa";
-       animTextureDefault = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButtonMain\normal_ca.paa";
        period = 0.5;
        font = "PuristaMedium";
        size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
@@ -699,16 +694,6 @@ class RscCheckBox
           0,
           0
        };
-       textureChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
-       textureUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
-       textureFocusedChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
-       textureFocusedUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
-       textureHoverChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
-       textureHoverUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
-       texturePressedChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
-       texturePressedUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
-       textureDisabledChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
-       textureDisabledUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
        tooltipColorText[] =
        {
           1,
@@ -974,30 +959,6 @@ class RscButtonMenu
           w = 0.0225;
           h = 0.03;
        };
-       soundEnter[] =
-       {
-          "\A3\ui_f\data\sound\RscButtonMenu\soundEnter",
-          0.09,
-          1
-       };
-       soundPush[] =
-       {
-          "\A3\ui_f\data\sound\RscButtonMenu\soundPush",
-          0.09,
-          1
-       };
-       soundClick[] =
-       {
-          "\A3\ui_f\data\sound\RscButtonMenu\soundClick",
-          0.09,
-          1
-       };
-       soundEscape[] =
-       {
-          "\A3\ui_f\data\sound\RscButtonMenu\soundEscape",
-          0.09,
-          1
-       };
     };
 class RscButtonMenuOK
 {
@@ -1011,12 +972,6 @@ class RscButtonMenuOK
        };
        default = 1;
        text = "OK";
-       soundPush[] =
-       {
-          "\A3\ui_f\data\sound\RscButtonMenuOK\soundPush",
-          0.09,
-          1
-       };
     };
 class RscButtonMenuCancel
 {

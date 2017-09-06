@@ -1,0 +1,1 @@
+createDialog "ETG_FastTravelSystem_Dialog";

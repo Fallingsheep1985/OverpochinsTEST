@@ -3,34 +3,7 @@
 	Author: Kellojo
 	Description: Sets up fast travel system dialog (Price&Time)
 	If you want to edit the dialog use this:
-	
-/* #Wudowu
-$[
-	1.063,
-	["FastTravel_Dialog",[[0,0,1,1],0.025,0.04,"GUI_GRID"],0,0,0],
-	[2200,"FastTravel_Background",[1,"",["0.324687 * safezoneW + safezoneX","0.357 * safezoneH + safezoneY","0.350625 * safezoneW","0.396 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1600,"FastTravel_Button",[1,"Reisen",["0.561875 * safezoneW + safezoneX","0.709 * safezoneH + safezoneY","0.103125 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1500,"FastTravel_Listbox",[1,"",["0.561875 * safezoneW + safezoneX","0.467 * safezoneH + safezoneY","0.103125 * safezoneW","0.22 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wï¿½hle ein Reiseziel aus.","-1"],[]],
-	[1001,"FastTravel_Text_Headline",[1,"Schnellreise System",["0.324687 * safezoneW + safezoneX","0.335 * safezoneH + safezoneY","0.350625 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1200,"FastTravel_Map_Map",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.334999 * safezoneW + safezoneX","0.379 * safezoneH + safezoneY","0.216563 * safezoneW","0.352 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1000,"FastTravel_Text_Price",[1,"Preis:",["0.561875 * safezoneW + safezoneX","0.379 * safezoneH + safezoneY","0.0309375 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1002,"FastTravel_Text_PriceCounter",[1,"0.00ï¿½",["0.603125 * safezoneW + safezoneX","0.379 * safezoneH + safezoneY","0.061875 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1003,"FastTravel_Text_Time",[1,"Reisedauer:",["0.561875 * safezoneW + safezoneX","0.423 * safezoneH + safezoneY","0.0515625 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1004,"FastTravel_TimeCounter",[1,"0 s",["0.62375 * safezoneW + safezoneX","0.423 * safezoneH + safezoneY","0.04125 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
-]
 */
-
-
-/* #Xihecy
-$[
-	1.063,
-	["FastTravel_Countdown",[[0,0,1,1],0.025,0.04,"GUI_GRID"],0,0,0],
-	[1000,"FastTravel_Text_Countdown",[1,"Verbleibende Zeit:",["0.876406 * safezoneW + safezoneX","0.654 * safezoneH + safezoneY","0.103125 * safezoneW","0.044 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1001,"FastTravel_Text_Counter",[1,"1573 s",["0.876406 * safezoneW + safezoneX","0.709 * safezoneH + safezoneY","0.103125 * safezoneW","0.044 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
-]
-*/
-
-
 class rscMapControl
 {
 	access = 0;
@@ -100,7 +73,7 @@ class rscMapControl
 	w = "SafeZoneWAbs";
 	x = "SafeZoneXAbs";
 	y = "SafeZoneY + 1.5 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-	class ActiveMarker
+class ActiveMarker
 	{
 		color[] = {0.3,0.1,0.9,1};
 		size = 50;
@@ -110,7 +83,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.25;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\bunker_ca.paa";
+		icon = "";
 		importance = "1.5 * 14 * 0.05";
 		size = 14;
 	};
@@ -119,7 +92,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.25;
 		color[] = {0.45,0.64,0.33,0.4};
-		icon = "\A3\ui_f\data\map\mapcontrol\bush_ca.paa";
+		icon = "";
 		importance = "0.2 * 14 * 0.05 * 0.05";
 		size = "14/2";
 	};
@@ -128,7 +101,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\busstop_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -137,7 +110,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.85;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\Chapel_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -146,7 +119,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\church_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -155,7 +128,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 1;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\waypoint_ca.paa";
+		icon = "";
 		importance =1;
 		size = 18;
 	};
@@ -164,7 +137,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\Cross_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -173,7 +146,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 1;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\custommark_ca.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -182,7 +155,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.25;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\bunker_ca.paa";
+		icon = "";
 		importance = "2 * 16 * 0.05";
 		size = 16;
 	};
@@ -191,7 +164,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.25;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\fountain_ca.paa";
+		icon = "";
 		importance = "1 * 12 * 0.05";
 		size = 11;
 	};
@@ -200,7 +173,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\fuelstation_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -209,7 +182,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\hospital_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -229,7 +202,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\lighthouse_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -238,7 +211,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\power_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -247,7 +220,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\powersolar_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -256,7 +229,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\powerwind_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -265,7 +238,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\powerwave_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -274,7 +247,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\quay_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -283,7 +256,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.25;
 		color[] = {0.1,0.1,0.1,0.8};
-		icon = "\A3\ui_f\data\map\mapcontrol\rock_ca.paa";
+		icon = "";
 		importance = "0.5 * 12 * 0.05";
 		size = 12;
 	};
@@ -292,7 +265,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 1;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\ruin_ca.paa";
+		icon = "";
 		importance = "1.2 * 16 * 0.05";
 		size = 16;
 	};
@@ -301,7 +274,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\shipwreck_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -310,7 +283,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.25;
 		color[] = {0.45,0.64,0.33,0.4};
-		icon = "\A3\ui_f\data\map\mapcontrol\bush_ca.paa";
+		icon = "";
 		importance = "0.6 * 12 * 0.05";
 		size = 12;
 	};
@@ -319,7 +292,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.9;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\stack_ca.paa";
+		icon = "";
 		importance = "2 * 16 * 0.05";
 		size = 20;
 	};
@@ -332,11 +305,11 @@ class rscMapControl
 		colorCreated[] = {1,1,1,1};
 		colorDone[] = {0.7,1,0.3,1};
 		colorFailed[] = {1,0.3,0.2,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\taskIcon_CA.paa";
-		iconCanceled = "\A3\ui_f\data\map\mapcontrol\taskIconCanceled_CA.paa";
-		iconCreated = "\A3\ui_f\data\map\mapcontrol\taskIconCreated_CA.paa";
-		iconDone = "\A3\ui_f\data\map\mapcontrol\taskIconDone_CA.paa";
-		iconFailed = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_CA.paa";
+		icon = "";
+		iconCanceled = "";
+		iconCreated = "";
+		iconDone = "";
+		iconFailed = "";
 		importance = 1;
 		size = 27;
 	};
@@ -345,7 +318,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.7;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\tourism_ca.paa";
+		icon = "";
 		importance = "1 * 16 * 0.05";
 		size = 16;
 	};
@@ -354,7 +327,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\transmitter_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -363,7 +336,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.25;
 		color[] = {0.45,0.64,0.33,0.4};
-		icon = "\A3\ui_f\data\map\mapcontrol\bush_ca.paa";
+		icon = "";
 		importance = "0.9 * 16 * 0.05";
 		size = 12;
 	};
@@ -372,7 +345,7 @@ class rscMapControl
 		coefMax = 4;
 		coefMin = 0.5;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\viewtower_ca.paa";
+		icon = "";
 		importance = "2.5 * 16 * 0.05";
 		size = 16;
 	};
@@ -381,7 +354,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 0.85;
 		color[] = {1,1,1,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\watertower_CA.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -390,7 +363,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 1;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\waypoint_ca.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -399,7 +372,7 @@ class rscMapControl
 		coefMax = 1;
 		coefMin = 1;
 		color[] = {0,0,0,1};
-		icon = "\A3\ui_f\data\map\mapcontrol\waypointCompleted_ca.paa";
+		icon = "";
 		importance = 1;
 		size = 24;
 	};
@@ -477,7 +450,7 @@ class ETG_FastTravelSystem_Dialog
 		class FastTravel_Text_PriceCounter: RscText
 		{
 			idc = 147417;
-			text = "0.00 tabs";
+			text = "0.00 Credits";
 			x = 0.603125 * safezoneW + safezoneX;
 			y = 0.379 * safezoneH + safezoneY;
 			w = 0.061875 * safezoneW;
