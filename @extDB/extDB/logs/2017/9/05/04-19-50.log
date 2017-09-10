@@ -1,0 +1,14 @@
+[14:19:50 +11:00] [Thread 776816817] extDB: Version: 35
+[14:19:50 +11:00] [Thread 776816817] extDB: Windows Version
+[14:19:50 +11:00] [Thread 776816817] Message: Arma Linux Servers are using Older Physic Library (than Windows Servers), due to Debian 7 using old version of Glibc
+[14:19:50 +11:00] [Thread 776816817] Message: If you like extDB consider donating or bug BIS to drop support for Debian 7 thanks, so Linux Servers get same Physic Library Version as Windows
+[14:19:50 +11:00] [Thread 776816817] Message: Note currently most/all development for extDB is done on a Linux Server
+[14:19:50 +11:00] [Thread 776816817] Message: Torndeco: 24/01/15
+[14:19:50 +11:00] [Thread 776816817] 
+[14:19:50 +11:00] [Thread 776816817] extDB: Found extdb-conf.ini
+[14:19:50 +11:00] [Thread 776816817] extDB: Detected 4 Cores, Setting up 4 Worker Threads
+[14:19:50 +11:00] [Thread 776816817] extDB: Database Type: MySQL
+[14:19:50 +11:00] [Thread 776816817] extDB: Database Exception Error: Connection attempt failed: Access denied for user 'USERNAME'@'localhost' (using password: YES)
+[14:19:50 +11:00] [Thread 776816817] extDB: DB_RAW_V3: No Database Connection
+[14:19:50 +11:00] [Thread 776816817] extDB: Failed to Load Protocol
+[14:52:21 +11:00] [Thread 776816817] extDB: Stopping ...
