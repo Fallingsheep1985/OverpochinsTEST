@@ -179,7 +179,7 @@ addOnsAuto[]=
 			side="LOGIC";
 			class Vehicles
 			{
-				items=2;
+				items=1;
 				class Item0
 				{
 					position[]={-144,0,2320};
@@ -189,15 +189,6 @@ addOnsAuto[]=
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.6;
-				};
-				class Item1
-				{
-					position[]={15043.6,0,9589.8711};
-					id=1;
-					side="EMPTY";
-					vehicle="Notice_board";
-					skill=0.60000002;
-					init="this addAction ["Open Travel System", "scripts\fasttravel\opendialog.sqf", nil, 6, true, true, "", ""];";
 				};
 			};
 		};
