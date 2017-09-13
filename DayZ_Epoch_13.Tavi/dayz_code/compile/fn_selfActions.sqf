@@ -710,24 +710,24 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 				};
 			};
 			s_player_repairActions set [count s_player_repairActions,_menu];
-
-
-
-
-
-
-
-
-							 if (_typeOfCursorTarget in Ori_VehiclesList) then {
-            _cfg = configFile >> "CfgVehicles" >> _typeOfCursorTarget >> "AnimationSources";
-            _tc = count _cfg;
-            _part = "PartGeneric";
+			s_player_repair_crtl = 1;
+		} else {
+			{dayz_myCursorTarget removeAction _x} forEach s_player_repairActions;
+			s_player_repairActions = [];
+			s_player_repair_crtl = -1;
+			
+					s_player_repairActions set [count s_player_repairActions,_menu];
+				s_player_repairActions set [count s_player_repairActions,_menu1];
+			if (_typeOfCursorTarget in Ori_VehiclesList) then {
+				_cfg = configFile >> "CfgVehicles" >> _typeOfCursorTarget >> "AnimationSources";
+				_tc = count _cfg;
+				_part = "PartGeneric";
            
-            for "_mti" from 0 to _tc-1 do {
-                _mt = (_cfg select _mti);
-                _st = getText(_mt >> "source");
-                _anim_array = Ori_VehicleUpgrades;
-                if (_st in _anim_array) then {
+				for "_mti" from 0 to _tc-1 do {
+					_mt = (_cfg select _mti);
+					_st = getText(_mt >> "source");
+					_anim_array = Ori_VehicleUpgrades;
+					if (_st in _anim_array) then {
                     _statuss = _cursorTarget getVariable [_st,1];
                         if (_statuss == 1) then {
                             _num = _anim_array find _st;
@@ -742,17 +742,12 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
                             _color = "color='#ff0000'";
                             _stname = format["Upgrade %1",_upgradeName];
                             _string = format["<t %2>%1</t>", _stname,_color];
-							_handle = dayz_myCursorTarget addAction [_string, "origins\ori_upgrade.sqf",[_cursorTarget,_part,_st], 0, false, true, "",""];
-							s_player_repairActions set [count s_player_repairActions,_handle];
+                        _handle = dayz_myCursorTarget addAction [_string, "origins\ori_upgrade.sqf",[_cursorTarget,_part,_st], 0, false, true, "",""];
+                        s_player_repairActions set [count s_player_repairActions,_handle];
 						};
 					};
 				};
 			};
-			s_player_repair_crtl = 1;
-		} else {
-			{dayz_myCursorTarget removeAction _x} forEach s_player_repairActions;
-			s_player_repairActions = [];
-			s_player_repair_crtl = -1;
 		};
 	};
 	/* //Vanilla base building currently not used in Epoch
@@ -1188,7 +1183,7 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 	
 	// Custom below
 	
-		If(DZE_AllowCargoCheck) then {
+	If(DZE_AllowCargoCheck) then {
 		if((_isVehicle || _isTent || _isnewstorage || _typeOfCursorTarget in DZE_Origins_Buildings) && _isAlive && !_isMan && !locked _cursorTarget) then {
 			if (s_player_checkGear < 0) then {
 				s_player_checkGear = player addAction [localize "STR_EPOCH_PLAYER_CARGO", "\z\addons\dayz_code\actions\cargocheck.sqf",_cursorTarget, 1, true, true, "", ""];
@@ -1198,7 +1193,7 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 			player removeAction s_player_checkGear;
 			s_player_checkGear = -1;
 		};
-
+};
 	if (_isMan && {!_isAlive} && {!(_cursorTarget isKindOf "Animal")} && {player distance _cursorTarget < 5}) then {
 		if (s_player_checkWallet < 0) then {
 			s_player_checkWallet = player addAction ["Check Wallet","scripts\zsc\checkWallet.sqf",_cursorTarget,0,false,true];
@@ -1243,7 +1238,7 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 		player removeAction s_bank_dialog2;
 		s_bank_dialog2 = -1;
 	};
-
+	
 	// All Traders
 	if (_isMan && {!(isPlayer _cursorTarget)} && {_typeOfCursorTarget in serverTraders} && {!_isPZombie}) then {
 		if (s_player_parts_crtl < 0) then {

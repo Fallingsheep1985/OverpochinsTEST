@@ -10,7 +10,7 @@ _dest = [_this, 1, "", [""]] call BIS_fnc_param;
 
 //Modify these to change the price, travel time and the locations you can travel to
 _COSTSTOTRAVEL = true; // use coins to pay for travel?
-_InstantTravel = false; // instanly travel or use video flyover?
+_InstantTravel = false; // instantly travel or use video flyover?
 _distPriceMult = 0.005; //(price = distance * _distPriceMult)
 _distTimeMultip = 5; //(time = distance * _distTimeMultip)
 _Citys = ["ftravel_Sabina","ftravel_Martin","ftravel_Dalnogorsk","ftravel_Yaroslav","ftravel_Lyepestok","ftravel_Etanvosk","ftravel_Stari_Sad","ftravel_Seven","ftravel_Mitrovice","ftravel_Chernovar","ftravel_Branibor","ftravel_Baranovka","ftravel_Vladamir","ftravel_Biysh"];	//These have to be markers!!! - Marker names will be displayed as the name of the location
@@ -48,7 +48,7 @@ if (_mode == 1) exitwith {
 				_Time = (( _distance / 1000) * _distTimeMultip) + 8;
 				_Time2 = round _Time;
 				ctrlSetText [147419,format ["%1s",_Time2]];
-			}
+			};
 		};
 	} forEach _Citys;
 };
@@ -83,7 +83,7 @@ if (_mode == 3) exitwith {
 	if(_COSTSTOTRAVEL)then{
 		_Price = _distance * _distPriceMult;
 		_Price2 = round _Price;
-		_cashMoney = player getVariable["cashMoney",0];
+		_cashMoney = player getVariable [Z_moneyVariable,0];
 	};
 	_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Your journey is going to start in 10 seconds.";
 	hint _txt;
@@ -100,14 +100,16 @@ if (_mode == 3) exitwith {
 		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not travel while being in a fire fight.";
 		hint _txt;
 	};
-	if(_COSTSTOTRAVEL){
+	if (_COSTSTOTRAVEL) then {
+	_cashMoney = player getVariable [Z_moneyVariable,0];
 		if (_cashMoney < _Price) exitWith {
 			_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You do not have enough credits!";
 			hint _txt;
 		};
 		// remove coins
 		_cashMoney = _cashMoney - _Price;
-		player setVariable["cashMoney",_cashMoney, true];
+		player setVariable[Z_moneyVariable,_cashMoney, true];
+		call player_forceSave;
 	};
 	if !(_InstantTravel) then {
 		player allowDamage false;
@@ -167,7 +169,7 @@ if (_mode == 3) exitwith {
 		_randomposition = [_destPos, 0, 5, 0, 0, 2000, 0] call BIS_fnc_findSafePos;
 		player setPos _randomposition;
 		//finish
-		_txt = parseText (format ["<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Welcome to %1 %2!",markerText _dest,name player,_Price]);
+		_txt = parseText (format ["<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Welcome to %1 %2!",markerText _dest,name player]);
 		hint _txt;
 	};
 };

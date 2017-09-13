@@ -523,8 +523,7 @@ addOnsAuto[]=
 			text="Fast Travel Branibor";
 			type="mil_objective";
 			colorName="ColorBrown";
-		};
-				};		
+		};	
 		class Item44 //fasttravel
 		{
 			position[]={10557.712,0,9981.9512};
@@ -532,8 +531,7 @@ addOnsAuto[]=
 			text="Fast Travel Baranovka";
 			type="mil_objective";
 			colorName="ColorBrown";
-		};
-				};		
+		};	
 		class Item45 //fasttravel
 		{
 			position[]={1946.64,0,17199.5};
@@ -541,8 +539,7 @@ addOnsAuto[]=
 			text="Fast Travel Vladamir";
 			type="mil_objective";
 			colorName="ColorBrown";
-		};
-				};		
+		};	
 		class Item46 //fasttravel
 		{
 			position[]={5682.3,0,16748.3};

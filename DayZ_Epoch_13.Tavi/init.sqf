@@ -72,6 +72,7 @@ dayz_markBody = 1; // Players can see their corpse position on the map 0=never, 
 dayz_requireRadio = false; // Require players to have a radio on their toolbelt to create a group, be in a group and receive invites.
 // Plot Management and Plot for Life
 DZE_Origins_Building_System = true;
+DZE_AllowCargoCheck = true; //allow cargo check
 DZE_permanentPlot = true; // Plot ownership saves after death. Enables Plot for Life by @RimBlock and Plot Management by @DevZupa.
 DZE_plotManagementMustBeClose = true; //Players must be within 10m of pole to be added as a plot friend.
 DZE_PlotManagementAdmins = ["76561197997835618"]; //Array of admin PlayerUIDs. UIDs in this list are able to access every pole's management menu and delete or build any buildable with a pole nearby.
