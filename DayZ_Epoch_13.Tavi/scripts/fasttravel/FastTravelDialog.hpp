@@ -36,10 +36,10 @@ class rscMapControl
 	colorTracksFill[] = {0.84,0.76,0.65,1};
 	font = "TahomaB";
 	fontGrid = "TahomaB";
-	fontInfo = "PuristaMedium";
-	fontLabel = "PuristaMedium";
+	fontInfo = "TahomaB";
+	fontLabel = "TahomaB";
 	fontLevel = "TahomaB";
-	fontNames = "PuristaMedium";
+	fontNames = "TahomaB";
 	fontUnits = "TahomaB";
 	h = "SafeZoneH - 1.5 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	maxSatelliteAlpha = 0.85;
@@ -190,7 +190,7 @@ class ActiveMarker
 	{
 		color[] = {0,0,0,1};
 		colorBackground[] = {1,1,1,0.5};
-		font = "PuristaMedium";
+		font = "TahomaB";
 		h = "3.5 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		w = "10 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
