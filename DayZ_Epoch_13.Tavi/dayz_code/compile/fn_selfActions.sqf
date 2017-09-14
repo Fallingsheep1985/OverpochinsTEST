@@ -327,18 +327,24 @@ if(DZE_Origins_Building_System) then {
     };
 	
 	//Submarine Submerging
-if (_inVehicle and (_vehicle isKindOf "ori_submarine")) then {
-   if (sub_up < 0) then {
-     thesub = _vehicle;
-	 sub_down = thesub addAction ["Rise","origins\sub_down.sqf","",5,false,true];
-     sub_up = thesub addAction ["Submerge","origins\sub_up.sqf","",5,false,true];
-   };
-} else {
-   thesub removeAction sub_up;
-   sub_up = -1;
-   thesub removeAction sub_down;
-   sub_down = -1;
-};
+//Submarine Submerging
+	if (typeOf _vehicle == "ori_submarine" && surfaceIsWater position player) then {
+	   
+		  if ((_vehicle animationPhase "sink") == 1) then {
+			if (sub_Up < 0) then {
+					sub_Up = _vehicle addAction ["Rise","origins\sub_down.sqf",0,5,false,true];
+				};   
+		   } else {
+			   if (sub_down < 0) then {
+					sub_Down = _vehicle addAction ["Submerge","origins\sub_up.sqf",1,5,false,true];
+			};
+		 };
+	} else {
+	   _vehicle removeAction sub_Up;
+	   sub_Up = -1;
+	   _vehicle removeAction sub_Down;
+	   sub_Down = -1;
+	};
 //Origins End
 
 if (_isPZombie) then {
@@ -576,43 +582,46 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 	};
 	//Origins Start
 	//allow demolition of Origins Housing
-    if (typeOf(vehicle player)=="ori_excavator") then
+//allow demolition of Origins Housing
+    if (typeOf _vehicle =="ori_excavator") then
     {
         if (bucketOut < 0) then {
-            ExcavateVeh = _vehicle;
-            bucketOut = ExcavateVeh addAction ["Bucket Out","origins\bucketOut.sqf","",5,false,true];
+            bucketOut = _vehicle addAction ["Bucket Out","origins\bucketOut.sqf","",5,false,true];
         };
         if(bucketIn < 0) then {
-            ExcavateVeh = _vehicle;
-            bucketIn = ExcavateVeh addAction ["Bucket In","origins\bucketIn.sqf","",5,false,true];
+            bucketIn = _vehicle addAction ["Bucket In","origins\bucketIn.sqf","",5,false,true];
         };
-        _nearestBuildList = nearestObjects [_vehicle, DZE_Origins_Buildings, 20];
+                _nearestBuildList = [];
+                _nearestBuilding = "";
+                _originHousing = DZE_Origins_Buildings;
+        _nearestBuildList = nearestObjects [_vehicle, _originHousing, 20];
         _nearestBuilding = _nearestBuildList select 0;
+                
         if(!isNil "_nearestBuilding") then
         {
-            _buildOwner = _nearestBuilding getVariable['OwnerPUID','0'];
-            if(s_demolish == -1) then {
-                if (_buildOwner == _ownerID) then {    
-                    ExcavateVeh = vehicle player;            
-                    s_demolish = ExcavateVeh addaction [("<t color=""#ff0000"">" + format["Demolish %1",typeOf(_nearestBuilding)] +"</t>"),"origins\demolish.sqf",_nearestBuilding,6,false,true,"",""];
+            _buildOwner = _nearestBuilding getVariable['OwnerUID','0'];
+
+            if(s_demolish < 0) then {
+                if (_buildOwner == (getplayerUID player)) then {    
+                    s_demolish = _vehicle addaction [("<t color=""#ff0000"">" + format["Demolish %1",typeOf(_nearestBuilding)] +"</t>"),"origins\demolish.sqf",_nearestBuilding,6,false,true,"",""];
                     sleep 5;
                 };
             } else {
-                ExcavateVeh removeAction s_demolish;
+                _vehicle removeAction s_demolish;
                 s_demolish = -1;
             };
         } else {
-            if(!isNil "ExcavateVeh") then {
-                ExcavateVeh removeAction s_demolish;
+            if(!isNil "player") then {
+                _vehicle removeAction s_demolish;
                 s_demolish = -1;
             };
         };        
     } else {
-        ExcavateVeh removeAction bucketIn;
+        _vehicle removeAction bucketIn;
         bucketIn = -1;
-        ExcavateVeh removeAction bucketOut;
+        _vehicle removeAction bucketOut;
         bucketOut = -1;
-        ExcavateVeh removeAction s_demolish;
+        _vehicle removeAction s_demolish;
         s_demolish = -1;
     };
 	//Origins End

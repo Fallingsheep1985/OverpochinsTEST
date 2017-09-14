@@ -21,11 +21,41 @@ ZSC_limitOnBank = true; // Have a limit on the bank? (i.e true or false) limits 
 ZSC_maxBankMoney = 10000000; // Default limit for bank objects.
 
 
-//Missing variables (CLIENT RPT SPAM FIX)
+//Origins Houses
+if(isNil "owner_H1") then {
+	owner_H1 = [];
+};
+if(isNil "owner_H2") then {
+	owner_H2 = [];
+};
+if(isNil "owner_H3") then {
+	owner_H3 = [];
+};
+if(isNil "owner_B1") then {
+	owner_B1 = [];
+};
+if(isNil "owner_B2") then {
+	owner_B2 = [];
+};
+if(isNil "owner_B3") then {
+	owner_B3 = [];
+};
+if(isNil "owner_SG") then {
+	owner_SG = [];
+};
+if(isNil "owner_KING") then {
+	owner_KING = [];
+};
+if(isNil "owner_SH") then {
+	owner_SH = [];
+};
+if(isNil "owner_LG") then {
+	owner_LG = [];
+};
 
-s_player_deploybike2 = [];
-thesub = [];
-ExcavateVeh = [];
+//undefined variables (CLIENT RPT SPAM FIX)
+
+s_player_deploybike2 = -1;
 bucketIn = -1;
 bucketOut = -1;
 sub_up = -1;
@@ -138,6 +168,7 @@ dayz_resetSelfActions = {
 	s_demolish = -1;
 	s_player_deploybike2 = -1;
 	s_player_clothes = -1;
+	s_house_sleep = -1;
 };
 
 call dayz_resetSelfActions;
