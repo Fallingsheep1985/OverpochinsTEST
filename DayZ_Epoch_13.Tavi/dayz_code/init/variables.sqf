@@ -8,7 +8,7 @@ ZSC_MaxMoneyInStorageMultiplier = 500000; // Multiplier for how much money a ban
 
 Z_bankVariable = "moneySpecial"; // If using single currency this is the variable name used to store object bank wealth.
 Z_globalVariable = "GlobalMoney"; // If using single currency this is the variable name used to store coins globally.
-//Z_moneyVariable = "GlobalMoney"; // Uncomment this this to make it so players don't lose coins on death. Will need to disable checkWallet as you can dupe if you have this and check wallet running.
+Z_moneyVariable = "GlobalMoney"; // Uncomment this this to make it so players don't lose coins on death. Will need to disable checkWallet as you can dupe if you have this and check wallet running.
 
 /*
 	IMPORTANT: The following 2 variables below are CASE SENSITIVE! If you don't put the object/trader classname EXACTLY how
@@ -19,6 +19,18 @@ ZSC_bankObjects = ["Plastic_Pole_EP1_DZ"]; // Array of objects that are availabl
 ZSC_bankTraders = ["Functionary1_EP1_DZ"]; // Array of trader classnames that are available for banking (i.e RU_Functionary1)
 ZSC_limitOnBank = true; // Have a limit on the bank? (i.e true or false) limits the global banking to the number below.
 ZSC_maxBankMoney = 10000000; // Default limit for bank objects.
+
+
+//Missing variables (CLIENT RPT SPAM FIX)
+
+s_player_deploybike2 = [];
+thesub = [];
+ExcavateVeh = [];
+bucketIn = -1;
+bucketOut = -1;
+sub_up = -1;
+sub_down = -1;
+s_house_sleep = -1;
 
 //Player self-action handles
 dayz_resetSelfActions = {
@@ -119,11 +131,13 @@ dayz_resetSelfActions = {
 	s_bank_dialog2 = -1;
 	s_garage_dialog = -1;
 	s_garage_dialog2 = -1;
-		 sub_down = -1;
-	  sub_up = -1;
-bucketIn = -1;
-bucketOut = -1;
-s_demolish = -1;
+	sub_down = -1;
+	sub_up = -1;
+	bucketIn = -1;
+	bucketOut = -1;
+	s_demolish = -1;
+	s_player_deploybike2 = -1;
+	s_player_clothes = -1;
 };
 
 call dayz_resetSelfActions;

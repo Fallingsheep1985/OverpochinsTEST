@@ -1473,6 +1473,16 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 	s_garage_dialog2 = -1;
 	player removeAction s_garage_dialog;
 	s_garage_dialog = -1;
+	player removeAction bucketIn;
+	bucketIn = -1;
+	player removeAction bucketOut;
+	bucketOut = -1;
+	player removeAction sub_up;
+	sub_up = -1;
+	player removeAction sub_down;
+	sub_down = -1;
+	player removeAction s_house_sleep;
+	s_house_sleep = -1;
 };
 
 //Dog actions on player self
