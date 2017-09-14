@@ -441,7 +441,7 @@ addOnsAuto[]=
 			position[]={15043.6,0,9589.8711};
 			name="ftravel_Sabina";
 			text="Fast Travel Sabina";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 		class Item34 //fasttravel
@@ -449,7 +449,7 @@ addOnsAuto[]=
 			position[]={16199.478,0,13740.484};
 			name="ftravel_Martin";
 			text="Fast Travel Martin";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 				class Item35 //fasttravel
@@ -457,7 +457,7 @@ addOnsAuto[]=
 			position[]={15032.7,0,18163};
 			name="ftravel_Dalnogorsk";
 			text="Fast Travel Dalnogorsk";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 				class Item36 //fasttravel
@@ -465,7 +465,7 @@ addOnsAuto[]=
 			position[]={10157.741,0,19033.885};
 			name="ftravel_Yaroslav";
 			text="Fast Travel Yaroslav";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 				class Item37 //fasttravel
@@ -473,7 +473,7 @@ addOnsAuto[]=
 			position[]={11080.8,0,15521.6};
 			name="ftravel_Lyepestok";
 			text="Fast Travel Lyepestok";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 				class Item38 //fasttravel
@@ -481,7 +481,7 @@ addOnsAuto[]=
 			position[]={12661.772,0,12103.309};
 			name="ftravel_Etanvosk";
 			text="Fast Travel Etanvosk";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 				class Item39 //fasttravel
@@ -489,7 +489,7 @@ addOnsAuto[]=
 			position[]={17505.8,0,6391};
 			name="ftravel_Stari_Sad";
 			text="Fast Travel Stari Sad";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 				class Item40 //fasttravel
@@ -497,7 +497,7 @@ addOnsAuto[]=
 			position[]={11163,0,655.742};
 			name="ftravel_Seven";
 			text="Fast Travel Seven";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 				class Item41 //fasttravel
@@ -505,7 +505,7 @@ addOnsAuto[]=
 			position[]={3688.86,0,7347.37};
 			name="ftravel_Mitrovice";
 			text="Fast Travel Mitrovice";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 		class Item42 //fasttravel
@@ -513,7 +513,7 @@ addOnsAuto[]=
 			position[]={6729.69,0,9916.08};
 			name="ftravel_Chernovar";
 			text="Fast Travel Chernovar";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};		
 		class Item43 //fasttravel
@@ -521,7 +521,7 @@ addOnsAuto[]=
 			position[]={7384.33,0,4013.79};
 			name="ftravel_Branibor";
 			text="Fast Travel Branibor";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};	
 		class Item44 //fasttravel
@@ -529,7 +529,7 @@ addOnsAuto[]=
 			position[]={10557.712,0,9981.9512};
 			name="ftravel_Baranovka";
 			text="Fast Travel Baranovka";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};	
 		class Item45 //fasttravel
@@ -537,7 +537,7 @@ addOnsAuto[]=
 			position[]={1946.64,0,17199.5};
 			name="ftravel_Vladamir";
 			text="Fast Travel Vladamir";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};	
 		class Item46 //fasttravel
@@ -545,7 +545,7 @@ addOnsAuto[]=
 			position[]={5682.3,0,16748.3};
 			name="ftravel_Biysh";
 			text="Fast Travel Biysh";
-			type="mil_objective";
+			type="mil_dot";
 			colorName="ColorBrown";
 		};
 		
