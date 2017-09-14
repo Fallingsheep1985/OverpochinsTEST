@@ -68,6 +68,20 @@ if (_mode == 2) exitwith {
 
 //Travel
 if (_mode == 3) exitwith {
+
+//CHeck money
+	if (_COSTSTOTRAVEL) then {
+	_cashMoney = player getVariable [Z_moneyVariable,0];
+		if (_cashMoney < _Price) exitWith {
+			_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You do not have enough credits!";
+			hint _txt;
+		};
+		// remove coins
+		_cashMoney = _cashMoney - _Price;
+		player setVariable[Z_moneyVariable,_cashMoney, true];
+		call player_forceSave;
+	};
+
 	//Check for bad data / abuse of the script						
 	if !(vehicle player == player) exitWith {
 		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not travel while you are in a vehicle!";
@@ -99,17 +113,6 @@ if (_mode == 3) exitwith {
 	if !(_damagePlayer >= _curDamage) exitWith {
 		_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You can not travel while being in a fire fight.";
 		hint _txt;
-	};
-	if (_COSTSTOTRAVEL) then {
-	_cashMoney = player getVariable [Z_moneyVariable,0];
-		if (_cashMoney < _Price) exitWith {
-			_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You do not have enough credits!";
-			hint _txt;
-		};
-		// remove coins
-		_cashMoney = _cashMoney - _Price;
-		player setVariable[Z_moneyVariable,_cashMoney, true];
-		call player_forceSave;
 	};
 	if !(_InstantTravel) then {
 		player allowDamage false;

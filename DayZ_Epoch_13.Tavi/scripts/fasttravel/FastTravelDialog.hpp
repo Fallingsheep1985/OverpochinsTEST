@@ -410,6 +410,15 @@ class ETG_FastTravelSystem_Dialog
 			action = "_destination = lbData [147413,(lbCurSel 147413)];[3,_destination] spawn fn_ftravel; closeDialog 0;";
 			colorBackground[] = {0.59,0.98,0.13,0.6};
 		};
+		class FastTravel_Button_Text: RscText
+		{
+			idc = 1474122;
+			text = "Travel";
+			x = 0.561875 * safezoneW + safezoneX;
+			y = 0.709 * safezoneH + safezoneY;
+			w = 0.103125 * safezoneW;
+			h = 0.022 * safezoneH;
+		};
 		class FastTravel_Listbox: RscListbox
 		{
 			idc = 147413;
