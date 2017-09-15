@@ -3,6 +3,11 @@ class Category_488 {
 		type = "trade_weapons";
 		buy[] = {2000,"worth"};
 		sell[] = {1000,"worth"};
+	};	
+	class MP5_SD_DZ {
+       type = "trade_weapons";
+       buy[] = {2500,"worth"};
+       sell[] = {1250,"worth"};	
 	};
 	class Bizon {
 		type = "trade_weapons";
@@ -17,7 +22,12 @@ class Category_488 {
 	class bizon_silenced {
         type = "trade_weapons";
         buy[] = {2500,"worth"};
-        sell[] = {1250,"worth"};	
+        sell[] = {1250,"worth"};
+	};	
+	class Bizon_SD_DZ {
+       type = "trade_weapons";
+       buy[] = {2500,"worth"};
+       sell[] = {1250,"worth"};	
 	};
 	class vil_uzi {
 		type = "trade_weapons";

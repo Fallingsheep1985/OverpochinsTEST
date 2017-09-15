@@ -8,6 +8,11 @@ class Category_487 {
 		type = "trade_weapons";
 		buy[] = {40000,"worth"};
 		sell[] = {20000,"worth"};
+	};	
+	class M14_EP1 {
+       type = "trade_weapons";
+       buy[] = {20000,"worth"};
+       sell[] = {10000,"worth"};	
 	};
 	class M14_Gh_DZ {
 		type = "trade_weapons";
@@ -313,11 +318,16 @@ class Category_487 {
 		type = "trade_weapons";
 		buy[] = {80000,"worth"};
 		sell[] = {40000,"worth"};
+	};	
+	class M110_NVG_EP1 {
+       type = "trade_weapons";
+       buy[] = {85000,"worth"};
+       sell[] = {42500,"worth"};	
 	};
 	class vil_M110sd {
 		type = "trade_weapons";
 		buy[] = {90000,"worth"};
-		sell[] = {145000,"worth"};
+		sell[] = {45000,"worth"};
 	};
 	class vil_M14G {
 		type = "trade_weapons";
