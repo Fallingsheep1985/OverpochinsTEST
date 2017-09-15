@@ -38,10 +38,6 @@ if (isServer) then {
 	_aipack 			= "";
 	_current_time		= time;
 	_unarmed			= false;
-	
-	//rpt spam fix
-	_gearmagazines		=[];
-	_geartools			=[];
 
 	if(_aitype == "Hero") then {
 		_unitGroup	= createGroup RESISTANCE;
