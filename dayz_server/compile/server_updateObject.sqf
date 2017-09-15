@@ -13,6 +13,8 @@ _objectID = "0";
 _objectUID = "0";
 
 if ((isNil "_object") || {isNull _object}) exitWith {diag_log "server_updateObject.sqf _object null or nil, could not update object"};
+// Epoch Admin Tools
+if (_object getVariable ["EAT_Veh",0] == 1) exitWith {};
 _objectID = _object getVariable ["ObjectID","0"];
 _objectUID = _object getVariable ["ObjectUID","0"];
 

@@ -1,5 +1,6 @@
 #include "defines.hpp"
 #include "scripts\fasttravel\FastTravelDialog.hpp"
+#include "admintools\dialog.hpp"
 respawn = "BASE";
 respawnDelay = 0;
 respawnDialog = 0;

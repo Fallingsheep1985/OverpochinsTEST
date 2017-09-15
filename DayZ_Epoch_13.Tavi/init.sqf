@@ -151,6 +151,11 @@ call compile preprocessFileLineNumbers "scripts\traders\server_traders.sqf";
 call compile preprocessFileLineNumbers "logistic\init.sqf";
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\tavi.sqf"; //Add trader city objects locally on every machine early
 if (dayz_POIs && (toLower worldName == "chernarus")) then {call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus\poi\init.sqf";}; //Add POI objects locally on every machine early
+
+//ADMINTOOLS FOR TESTING
+call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
+
 initialized = true;
 call compile preprocessFileLineNumbers "addons\suicide\init.sqf";
 
@@ -174,7 +179,9 @@ if (isServer) then {
 
 if (!isDedicated) then {
 	//Enables Plant lib fixes
-	execVM "\z\addons\dayz_code\system\antihack.sqf";
+	//execVM "\z\addons\dayz_code\system\antihack.sqf";
+	// Epoch Admin Tools
+	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
 		
 	if (dayz_townGenerator) then { execVM "\z\addons\dayz_code\compile\client_plantSpawner.sqf"; };
 	call compile preprocessFileLineNumbers "spawn\init.sqf";
@@ -206,6 +213,7 @@ call compile preprocessFileLineNumbers "addons\bike\init.sqf";
 //sheep custom fast travel
 fn_ftravel = compile preprocessFile "scripts\fasttravel\fn_ftravel.sqf";
 
+[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 
 	
 server_timeSync = {};
