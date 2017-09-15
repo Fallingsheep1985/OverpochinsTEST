@@ -154,8 +154,8 @@ call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\tavi.
 if (dayz_POIs && (toLower worldName == "chernarus")) then {call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus\poi\init.sqf";}; //Add POI objects locally on every machine early
 
 //ADMINTOOLS FOR TESTING
-call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
-call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
+//call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+//call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 
 initialized = true;
 call compile preprocessFileLineNumbers "addons\suicide\init.sqf";
@@ -219,7 +219,7 @@ LimitPlotPoles = false; // limit how many plotpoles a player can have
 PlotPoleLimit = 1; // how many plotpoles a player can have
 
 // Epoch admin tools
-[] execVM "admintools\Activate.sqf"; 
+//[] execVM "admintools\Activate.sqf"; 
 
 	
 server_timeSync = {};
