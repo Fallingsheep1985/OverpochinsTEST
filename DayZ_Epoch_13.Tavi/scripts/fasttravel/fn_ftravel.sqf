@@ -32,8 +32,10 @@ if (_mode == 1) exitwith {
 			_distance = [getMarkerPos _x, player] call BIS_fnc_distance2D;
 
 			//_distance = player distance2D _posDest;
+			_nocost = "";
 				ctrlSetText [147417,format ["Free",_nocost]];
 			if(_InstantTravel)then {
+			_Time2="";
 				ctrlSetText [147419,format ["INSTANT",_Time2]];
 			} else {
 				_Time = (( _distance / 1000) * _distTimeMultip) + 8;

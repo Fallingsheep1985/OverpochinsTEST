@@ -549,3 +549,6 @@ _vehicle_0 = createVehicle ["DebugBox_DZ", _debugMarkerPosition, [], 0, "CAN_COL
 _vehicle_0 setPos _debugMarkerPosition;
 _vehicle_0 setVariable ["ObjectID","1",true];
 */
+
+//ORIGINS
+[] ExecVM "\z\addons\dayz_server\origins\variables.sqf";
