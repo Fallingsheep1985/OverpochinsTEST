@@ -36,6 +36,7 @@ if (_mode == 1) exitwith {
 			
 			
 			if(_COSTSTOTRAVEL)then {
+				_distance = [getMarkerPos _x, player] call BIS_fnc_distance2D;
 				_Price = (_distance * _distPriceMult);
 				_Price2 = round _Price;
 				ctrlSetText [147417,format ["%1 credits",_Price2]];
@@ -71,13 +72,16 @@ if (_mode == 3) exitwith {
 
 //CHeck money
 	if (_COSTSTOTRAVEL) then {
-	_cashMoney = player getVariable [Z_moneyVariable,0];
-		if (_cashMoney < _Price) exitWith {
+		_distance = [getMarkerPos _x, player] call BIS_fnc_distance2D;
+		_Price = (_distance * _distPriceMult);
+		_Price2 = round _Price;
+		_cashMoney = player getVariable [Z_moneyVariable,0];
+		if (_cashMoney < _Price2) exitWith {
 			_txt = parseText "<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>You do not have enough credits!";
 			hint _txt;
 		};
 		// remove coins
-		_cashMoney = _cashMoney - _Price;
+		_cashMoney = _cashMoney - _Price2;
 		player setVariable[Z_moneyVariable,_cashMoney, true];
 		call player_forceSave;
 	};

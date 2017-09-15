@@ -40,7 +40,7 @@ DZE_CLICK_ACTIONS = [
 ["ItemGPS","Locate vehicle","execVM 'scripts\locate_vehicle.sqf'","true"],
 ["ItemGPS","Fast Travel Test","execVM 'scripts\fasttravel\opendialog.sqf'","true"],
 ["ItemGPS","Server Rules","execVM 'custom\menu\menu_init.sqf'","true"],
-["ItemGPS","Hero Level 1 House TEST","['H1',0,'Uroven1VelkaBudka','PartGeneric','Hero Level 1 House','house'] execVM 'origins\build_it.sqf';","true"],
+["ItemGPS","Hero Level 1 House TEST","['H1',5000,'Uroven1VelkaBudka','PartGeneric','Hero Level 1 House','house'] execVM 'origins\build_it.sqf';","true"],
 
 ["ItemKnife","Harvest weed","execVM 'scripts\weed\hemp.sqf'","true"],
 ["ItemKiloHemp","Smoke weed","execVM 'scripts\weed\smokeshit.sqf'","true"]
