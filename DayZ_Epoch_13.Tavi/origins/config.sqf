@@ -21,25 +21,25 @@ DZE_Origins_Humanity =
 
 //What needed for Building Houses
 DZE_Origins_House1 = [
-	["PartWoodPile",1]
+	["PartGeneric",1]
 ];
 DZE_Origins_House2 = [
-	["PartWoodPile",1]
+	["PartGeneric",1]
 ];
 DZE_Origins_House3 = [
-	["PartWoodPile",1]
+	["PartGeneric",1]
 ];
 DZE_Origins_SG = [
-	["PartWoodPile",1]
+	["PartGeneric",1]
 ];
 DZE_Origins_LG = [
-	["PartWoodPile",1]
+	["PartGeneric",1]
 ];
 DZE_Origins_King = [
-	["PartWoodPile",1]
+	["PartGeneric",1]
 ];
 DZE_Origins_Stronghold = [
-	["PartWoodPile",1]
+	["PartGeneric",1]
 ];
 
 DZE_Origins_NameLookup = [

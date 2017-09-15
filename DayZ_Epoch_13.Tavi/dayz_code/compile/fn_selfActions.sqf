@@ -31,6 +31,7 @@ _vehicleOwnerID = _vehicle getVariable ["CharacterID","0"];
 _hasHotwireKit = "ItemHotwireKit" in _magazinesPlayer;
 _isPZombie = player isKindOf "PZombie_VB";
 _dogHandle = player getVariable ["dogID",0];
+_isTent = _cursorTarget isKindOf "TentStorage";
 
 if (!isNull _nearLight) then {
 	if (_nearLight distance player < 4) then {

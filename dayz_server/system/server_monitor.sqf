@@ -54,7 +54,17 @@ for "_i" from 1 to 5 do {
 		_i = 99; // break
 	};
 };
-
+	//Define arrays
+	owner_B1 = [];
+	owner_B2 = [];
+	owner_B3 = [];
+	owner_H1 = [];
+	owner_H2 = [];
+	owner_H3 = [];
+	owner_SG = [];
+	owner_LG = [];
+	owner_KING = [];
+	owner_SH = [];
 if (typeName _result == "STRING") exitWith {
 	diag_log "HIVE: Connection error. Server_monitor.sqf is exiting.";
 };	
@@ -71,6 +81,7 @@ if (_legacyStreamingMethod) then {
 		//Stream Objects
 		diag_log ("HIVE: Commence Object Streaming...");
 		for "_i" from 1 to _val do  {
+		_isOrigins = false;
 			_result = _key call server_hiveReadWriteLarge;
 			_status = _result select 0;
 			_myArray set [count _myArray,_result];
@@ -239,7 +250,7 @@ if ((playersNumber west + playersNumber civilian) == 0) exitWith {
 			clearMagazineCargoGlobal _object;
 			clearBackpackCargoGlobal _object;
 			if( (count _inventory > 0) && !_isPlot && !_doorLocked) then {
-				if (_type in DZE_LockedStorage) then {
+				if (_type in DZE_LockedStorage || _type in DZE_Origins_Buildings) then {
 					// Do not send big arrays over network! Only server needs these
 					_object setVariable ["WeaponCargo",(_inventory select 0),false];
 					_object setVariable ["MagazineCargo",(_inventory select 1),false];
@@ -272,7 +283,16 @@ if ((playersNumber west + playersNumber civilian) == 0) exitWith {
 			_isAir = _object isKindOf "Air";
 			{
 				_selection = _x select 0;
-				_dam = if (!_isAir && {_selection in dayZ_explosiveParts}) then {(_x select 1) min 0.8;} else {_x select 1;};
+				_dam = if (!_isAir && {_selection in dayZ_explosiveParts}) then {
+				if (_selection in Ori_VehicleUpgrades) then {
+                        _object animate [_selection,_dam];
+                        _object setVariable [_selection,_dam,true];
+                    } else {
+						(_x select 1) min 0.8;
+					};
+				} else {
+					_x select 1;
+				};
 				_strH = "hit_" + (_selection);
 				_object setHit[_selection,_dam];
 				_object setVariable [_strH,_dam,true];
@@ -339,9 +359,37 @@ if ((playersNumber west + playersNumber civilian) == 0) exitWith {
 					};
 				} foreach _inventory;
 				
-				if (_maintenanceMode) then { _object setVariable ["Maintenance", true, true]; _object setVariable ["MaintenanceVars", _maintenanceModeVars]; };
+				if (_maintenanceMode) then { 
+					_object setVariable ["Maintenance", true, true]; 
+					_object setVariable ["MaintenanceVars", _maintenanceModeVars]; 
+				};
 			};
 		};
+					if(_type in DZE_Origins_Buildings) then {
+				//diag_log format["Origins Object: %1 - %2", _type,_ownerID];
+				_object setVariable ["CanBeUpdated",false, true];
+				{
+					_object setVariable ["OwnerUID",(_x select 0), true];
+					_object setVariable ["OwnerName",(_x select 1), true];
+				}   count _hitPoints;
+				_ownerUID = _object getVariable ["OwnerUID","0"];
+				switch(_type) do {
+					case "Uroven1DrevenaBudka"  : { owner_B1 set [count owner_B1, _ownerUID];};
+					case "Uroven2KladaDomek"    : { owner_B2 set [count owner_B2, _ownerUID];};
+					case "Uroven3DrevenyDomek"  : { owner_B3 set [count owner_B3, _ownerUID];};
+					case "Uroven1VelkaBudka"    : { owner_H1 set [count owner_H1, _ownerUID];};
+					case "Uroven2MalyDomek"     : { owner_H2 set [count owner_H2, _ownerUID];};
+					case "Uroven3VelkyDomek"    : { owner_H3 set [count owner_H3, _ownerUID];};
+					case "malaGaraz"            : { owner_SG set [count owner_SG, _ownerUID];};
+					case "velkaGaraz"           : { owner_LG set [count owner_LG, _ownerUID];};
+					case "kingramida"           : { owner_KING set [count owner_KING, _ownerUID];};
+					case "krepost"              : { owner_SH set [count owner_SH, _ownerUID];};
+				};
+				if((_pos select 2) < 0.25) then {
+					_object setVectorUp surfaceNormal position _object;
+				};
+				_object setVectorUp surfaceNormal position _object;
+			}; 
 		dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_object]; //Monitor the object
 } forEach _myArray;
 

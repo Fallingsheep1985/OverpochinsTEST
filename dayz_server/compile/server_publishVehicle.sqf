@@ -26,31 +26,37 @@ _uid = _worldspace call dayz_objectUID2;
 
 if (_spawnDMG) then { 
 	_fuel = 0;
-	if (getNumber(configFile >> "CfgVehicles" >> _class >> "isBicycle") != 1) then {
+	if(_class in DZE_Origins_Buildings) then {
+        _playerUID = _object getVariable ["OwnerUID","0"];
+        _playerName = _object getVariable ["OwnerName","0"];
+        _array set [count _array,[_playerUID, _playerName]];
+    } else {
+		if (getNumber(configFile >> "CfgVehicles" >> _class >> "isBicycle") != 1) then {
 
-		// Create randomly damaged parts
-	
-		_totaldam = 0;
-		_hitpoints = _object call vehicle_getHitpoints;
-		{
-			// generate damage on all parts
-			_dam = call generate_new_damage;
+			// Create randomly damaged parts
+		
+			_totaldam = 0;
+			_hitpoints = _object call vehicle_getHitpoints;
+			{
+				// generate damage on all parts
+				_dam = call generate_new_damage;
 
-			_selection = getText(configFile >> "cfgVehicles" >> _class >> "HitPoints" >> _x >> "name");
-			
-			if (_dam > 0) then {
-				_array set [count _array,[_selection,_dam]];
-				_totaldam = _totaldam + _dam;
-			};
-		} count _hitpoints;	
+				_selection = getText(configFile >> "cfgVehicles" >> _class >> "HitPoints" >> _x >> "name");
+				
+				if (_dam > 0) then {
+					_array set [count _array,[_selection,_dam]];
+					_totaldam = _totaldam + _dam;
+				};
+			} count _hitpoints;	
 
 
-		// just set low base dmg - may change later
-		_damage = 0;
+			// just set low base dmg - may change later
+			_damage = 0;
 
-		// New fuel min max 
-		_fuel = (random(DynamicVehicleFuelHigh-DynamicVehicleFuelLow)+DynamicVehicleFuelLow) / 100;
+			// New fuel min max 
+			_fuel = (random(DynamicVehicleFuelHigh-DynamicVehicleFuelLow)+DynamicVehicleFuelLow) / 100;
 
+		};
 	};
 };
 
@@ -108,12 +114,21 @@ dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_object];
 	_object setDamage _damage;
 
 	// Set Hits after ObjectID is set
-	{
-		_selection = _x select 0;
-		_dam = _x select 1;
-		if (_selection in dayZ_explosiveParts && _dam > 0.8) then {_dam = 0.8};
-		[_object,_selection,_dam] call fnc_veh_setFixServer;
-	} count _array;
+	if(_class in DZE_Origins_Buildings) then {
+		{
+			_playerUID = _x select 0;
+			_playerName = _x select 1;
+			_object setVariable ["OwnerUID",_playerUID, true];
+			_object setVariable ["OwnerName",_playerName, true];
+		} count _array;
+	} else {
+		{
+			_selection = _x select 0;
+			_dam = _x select 1;
+			if (_selection in dayZ_explosiveParts && _dam > 0.8) then {_dam = 0.8};
+			[_object,_selection,_dam] call fnc_veh_setFixServer;
+		} count _array;
+	};
 	
 	_object setFuel _fuel;
 	

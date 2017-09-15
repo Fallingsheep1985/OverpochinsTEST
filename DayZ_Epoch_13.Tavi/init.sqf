@@ -3,6 +3,7 @@
 	Addons Credits: Jetski Yanahui by Kol9yN, Zakat, Gerasimow9, YuraPetrov, zGuba, A.Karagod, IceBreakr, Sahbazz
 */
 
+
 //Server settings
 dayZ_instance = 11; //Instance ID of this server
 dayZ_serverName = ""; //Shown to all players in the bottom left of the screen (country code + server number)
@@ -213,7 +214,12 @@ call compile preprocessFileLineNumbers "addons\bike\init.sqf";
 //sheep custom fast travel
 fn_ftravel = compile preprocessFile "scripts\fasttravel\fn_ftravel.sqf";
 
-[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+//fix dze build check missing variables
+LimitPlotPoles = false; // limit how many plotpoles a player can have
+PlotPoleLimit = 1; // how many plotpoles a player can have
+
+// Epoch admin tools
+[] execVM "admintools\Activate.sqf"; 
 
 	
 server_timeSync = {};
