@@ -419,6 +419,8 @@ if (_hasrequireditem) then {
 			_tmpbuilt setVariable ["OwnerName",_playerName, true];
 			_activatingPlayer = player;
 			dayz_combination = _combination;
+			_combinationDisplay = _combination;
+			
 			
 			if (_proceed && (_buildingpart in magazines player)) then {
 				switch (_houselevel) do {
@@ -478,8 +480,9 @@ if (_hasrequireditem) then {
 					};
 				};
 				if (_classname in DZE_Origins_Stronghold) then {
-					PVDZE_veh_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,dayz_combination,_activatingPlayer];
-					publicVariableServer  "PVDZE_veh_Publish";
+					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
+					//PVDZ_obj_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,dayz_combination,_activatingPlayer];
+					publicVariableServer  "PVDZ_obj_Publish";
 					player removeMagazine _buildingpart;
 					player removeMagazine "ItemEmerald";
 					cutText [format[(localize "str_epoch_player_140"),dayz_combination,_name], "PLAIN DOWN", 5];
@@ -487,8 +490,9 @@ if (_hasrequireditem) then {
 					uiSleep 5;
 					//[player,3] call GiveXP;
 				} else {
-					PVDZE_veh_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,_charID,_activatingPlayer];
-					publicVariableServer  "PVDZE_veh_Publish";
+					//PVDZ_obj_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,_charID,_activatingPlayer];
+					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,_playerUID],[]];
+					publicVariableServer  "PVDZ_obj_Publish";
 					player removeMagazine _buildingpart;
 					//cutText [format["You have build %1. DO NOT place gear in Origins buildings! Items wont safe!", _name], "PLAIN DOWN",5];
 					//systemChat format["You have build %1. DO NOT place gear in Origins buildings! Items wont safe!", _name];					
@@ -496,7 +500,7 @@ if (_hasrequireditem) then {
  
 			} else {
 				deleteVehicle _tmpbuilt;
-				cutText [ "Build part missing!" , "PLAIN DOWN"];
+				localize "str_epoch_player_46" call dayz_rollingMessages;
 			};
 
 		} else {
@@ -508,11 +512,10 @@ if (_hasrequireditem) then {
 
 			deleteVehicle _tmpbuilt;
 
-			cutText [ "Proceed canceled" , "PLAIN DOWN"];
+			localize "str_epoch_player_46" call dayz_rollingMessages;
 		};
-
 	} else {
-		cutText [format[ "%2 for user %1",_name,_reason], "PLAIN DOWN"];
+		format[localize "str_epoch_player_47",_text,_reason] call dayz_rollingMessages;
 	};
 };
 

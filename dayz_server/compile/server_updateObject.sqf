@@ -44,9 +44,8 @@ if (!((typeOf _object) in DZE_safeVehicle) && !locked _object) then {
 	};
 };
 
-if (_isNotOk) exitWith {
-	//deleteVehicle _object;
-};
+//update debug
+if (_isNotOk) exitWith deleteVehicle _object; diag_log(format["Deleting object %1 with invalid ID at pos [%2,%3,%4]",typeOf _object,_object_position select 0,_object_position select 1, _object_position select 2]); };;
 
 _lastUpdate = _object getVariable ["lastUpdate",diag_tickTime];
 _needUpdate = _object in needUpdate_objects;
