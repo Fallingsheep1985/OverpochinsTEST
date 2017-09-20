@@ -32,6 +32,8 @@ _hasHotwireKit = "ItemHotwireKit" in _magazinesPlayer;
 _isPZombie = player isKindOf "PZombie_VB";
 _dogHandle = player getVariable ["dogID",0];
 _isTent = _cursorTarget isKindOf "TentStorage";
+_typeOfCursorTarget = (typeOf _cursorTarget);
+_isnewstorage = _typeOfCursorTarget in DZE_isNewStorage;
 
 if (!isNull _nearLight) then {
 	if (_nearLight distance player < 4) then {
@@ -1493,6 +1495,8 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 	sub_down = -1;
 	player removeAction s_house_sleep;
 	s_house_sleep = -1;
+	player removeAction s_player_checkgear;
+	s_player_checkgear = -1;
 };
 
 //Dog actions on player self
