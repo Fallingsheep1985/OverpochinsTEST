@@ -38,6 +38,10 @@ if (isServer) then {
 	_aipack 			= "";
 	_current_time		= time;
 	_unarmed			= false;
+	//undefined fix
+	_gearmagazines		=[];
+	_geartools			=[];
+	
 
 	if(_aitype == "Hero") then {
 		_unitGroup	= createGroup RESISTANCE;
@@ -86,9 +90,21 @@ if (isServer) then {
 				if(_gear == "random") 	exitWith { _aigear = ai_gear_random call BIS_fnc_selectRandom; };
 			};
 		};
-		
-		_gearmagazines 	= _aigear select 0;
-		_geartools 		= _aigear select 1;
+		//defualts if null
+		AI_GEARMAGS = ["ItemBandage","ItemBandage","ItemAntibiotic"];
+		AI_GEARTOOLS = ["ItemRadio","ItemMachete","ItemCrowbar"];
+		//Fix undefined error
+		if (_gearmagazines == "none" || _gearmagazines == "SCALAR")then {
+			_gearmagazines = AI_GEARMAGS;
+		} else {
+			_gearmagazines 		= _aigear select 0;
+		};
+		// fix zero divisor error
+		if (_geartools == "none" || _geartools == "SCALAR")then {
+			_geartools = AI_GEARTOOLS;
+		} else {
+			_geartools 		= _aigear select 1;
+		};	
 
 		call {
 			if(_skin == "random") 	exitWith { _aiskin = ai_all_skin 		call BIS_fnc_selectRandom; };
