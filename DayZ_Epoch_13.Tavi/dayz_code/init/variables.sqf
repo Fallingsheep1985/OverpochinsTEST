@@ -169,6 +169,7 @@ dayz_resetSelfActions = {
 	s_player_deploybike2 = -1;
 	s_player_clothes = -1;
 	s_house_sleep = -1;
+	s_player_checkgear = -1;
 };
 
 call dayz_resetSelfActions;
