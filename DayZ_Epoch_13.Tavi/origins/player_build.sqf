@@ -1,11 +1,11 @@
 private ["_objects","_count","_onLadder","_isWater","_cancel","_reason","_canBuildOnPlot","_vehicle","_inVehicle","_houselevel","_classname","_name","_buildingpart","_charID","_playerUID","_playerName","_abort","_classnametmp","_requireplot","_isAllowedUnderGround","_offset","_isPole","_isLandFireDZ","_distance","_needText","_findNearestPoles","_findNearestPole","_IsNearPlot","_nearestPole","_playerID","_ownerID","_friendlies","_message","_require","_missing","_hasrequireditem","_hastoolweapon","_location","_isOk","_location1","_dir","_object","_position","_objHDiff","_zheightchanged","_zheightdirection","_rotate","_location2","_tmpbuilt","_limit","_proceed","_counter","_dis","_sfx","_started","_finished","_animState","_isMedic","_activatingPlayer"];
 
-if(dayz_actionInProgress) exitWith { cutText [(localize "str_epoch_player_40") , "PLAIN DOWN"]; };
+if(dayz_actionInProgress) exitWith { cutText [ "ORIGINS: Building already in progress. " , "PLAIN DOWN"]; };
 dayz_actionInProgress = true;
 
 _objects = nearestObjects [player, DZE_maintainClasses, (DZE_PlotPole select 0)];
 _count = count _objects;
-if (_count > DZE_BuildingLimit) exitWith { dayz_actionInProgress = false; cutText ["\n\nCannot build, too many objects within plot pole area.","PLAIN DOWN"]; };
+if (_count > DZE_BuildingLimit) exitWith { dayz_actionInProgress = false; cutText ["ORIGINS: Cannot build, too many objects within plot pole area.","PLAIN DOWN"]; };
 
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		dayz_isSwimming;
@@ -34,10 +34,10 @@ DZE_cancelBuilding = false;
 call gear_ui_init;
 closeDialog 1;
 
-if (dayz_isSwimming) exitWith {dayz_actionInProgress = false; cutText [ "Cant Build while Swimming!", "PLAIN DOWN"];};
-if (_inVehicle) exitWith {dayz_actionInProgress = false; cutText [ "Cant Build in vehicle!", "PLAIN DOWN"];};
-if (_onLadder) exitWith {dayz_actionInProgress = false; cutText [ "Cant Build on Ladder!", "PLAIN DOWN"];};
-if (player getVariable["inCombat",false]) exitWith {dayz_actionInProgress = false; cutText [ "Cant Build in Combat!", "PLAIN DOWN"];};
+if (dayz_isSwimming) exitWith {dayz_actionInProgress = false; cutText [ "ORIGINS: Cant Build while Swimming!", "PLAIN DOWN"];};
+if (_inVehicle) exitWith {dayz_actionInProgress = false; cutText [ "ORIGINS: Cant Build in vehicle!", "PLAIN DOWN"];};
+if (_onLadder) exitWith {dayz_actionInProgress = false; cutText [ "ORIGINS: Cant Build on Ladder!", "PLAIN DOWN"];};
+if (player getVariable["inCombat",false]) exitWith {dayz_actionInProgress = false; cutText [ "ORIGINS: Cant Build in Combat!", "PLAIN DOWN"];};
 
 _houselevel = _this select 0;
 _classname = _this select 1;
@@ -67,7 +67,7 @@ _isPole = (_classname == "Plastic_Pole_EP1_DZ");
 _isLandFireDZ = (_classname == "Land_Fire_DZ");
 
 _distance = DZE_PlotPole select 0;
-_needText = localize "str_epoch_player_246";
+_needText = "ORIGINS: Plot Pole";
 
 if(_isPole) then {
 	_distance = DZE_PlotPole select 1;
@@ -86,7 +86,7 @@ _findNearestPole = [];
 _IsNearPlot = count (_findNearestPole);
 
 // If item is plot pole && another one exists within 45m
-if(_isPole && _IsNearPlot > 0) exitWith {  dayz_actionInProgress = false; cutText [ "Need to near PlotPole!" , "PLAIN DOWN"]; };
+if(_isPole && _IsNearPlot > 0) exitWith {  dayz_actionInProgress = false; cutText [ "ORIGINS: Need to be near a PlotPole!" , "PLAIN DOWN"]; };
 
 if(_IsNearPlot == 0) then {  // no plot pole close
 	// Allow building of plot
@@ -112,7 +112,7 @@ if(_IsNearPlot == 0) then {  // no plot pole close
 };
 
 // _message
-if (!_canBuildOnPlot) exitWith {  dayz_actionInProgress = false; cutText [format[(localize "STR_EPOCH_PLAYER_135"),_needText,_distance] , "PLAIN DOWN"]; };
+if (!_canBuildOnPlot) exitWith {  dayz_actionInProgress = false; cutText [format[ "ORIGINS: This item needs a %1 within %2 meters",_needText,_distance] , "PLAIN DOWN"]; };
 
 _require = ["ItemToolbox","ItemEtool","ItemSledge"];
 _missing = "";
@@ -122,7 +122,7 @@ _hasrequireditem = true;
 	if(!_hastoolweapon) exitWith { _hasrequireditem = false; _missing = getText (configFile >> "cfgWeapons" >> _x >> "displayName"); };
 } count _require;
 
-if (!_hasrequireditem) exitWith {dayz_actionInProgress = false; cutText [format[ "Cant Build Missing %1!",_missing] , "PLAIN DOWN"]; };
+if (!_hasrequireditem) exitWith {dayz_actionInProgress = false; cutText [format[ "ORIGINS: Cant Build Missing %1!",_missing] , "PLAIN DOWN"]; };
 if (_hasrequireditem) then {
 	_location = [0,0,0];
 	_isOk = true;
@@ -134,7 +134,7 @@ if (_hasrequireditem) then {
 	_object = createVehicle [_classname, _location, [], 0, "CAN_COLLIDE"];
 	_object attachTo [player,_offset];
 	_position = getPosATL _object;
-	cutText [(localize "str_epoch_player_45"), "PLAIN DOWN"];
+	cutText [ "ORIGINS: PgUp to raise or PgDn to lower (Hold ALT to raise faster or CTRL slower), Q or E to flip 180. Space-Bar to build.", "PLAIN DOWN"];
 	_objHDiff = 0;
 
 	while {_isOk} do {
@@ -252,7 +252,7 @@ if (_hasrequireditem) then {
 		if(_location1 distance _location2 > 5) exitWith {
 			_isOk = false;
 			_cancel = true;
-			_reason = "You've moved to far away from where you started building (within 5 meters)";
+			_reason = "ORIGINS: You've moved to far away from where you started building (within 5 meters)";
 			detach _object;
 			deleteVehicle _object;
 		};
@@ -260,7 +260,7 @@ if (_hasrequireditem) then {
 		if(abs(_objHDiff) > 5) exitWith {
 			_isOk = false;
 			_cancel = true;
-			_reason = "Cannot move up || down more than 5 meters";
+			_reason = "ORIGINS: Cannot move up || down more than 5 meters";
 			detach _object;
 			deleteVehicle _object;
 		};
@@ -268,7 +268,7 @@ if (_hasrequireditem) then {
 		if (player getVariable["inCombat",false]) exitWith {
 			_isOk = false;
 			_cancel = true;
-			_reason = "Cant Build in Combat!";
+			_reason = "ORIGINS: Cant Build in Combat!";
 			detach _object;
 			deleteVehicle _object;
 		};
@@ -276,7 +276,7 @@ if (_hasrequireditem) then {
 		if (DZE_cancelBuilding) exitWith {
 			_isOk = false;
 			_cancel = true;
-			_reason = "Cancelled building. DZE_cancelBuilding did this! ";
+			_reason = "ORIGINS: Cancelled building. DZE_cancelBuilding did this! ";
 			detach _object;
 			deleteVehicle _object;
 		};
@@ -284,11 +284,11 @@ if (_hasrequireditem) then {
 
 	//No building on roads unless toggled
 	if (!DZE_BuildOnRoads) then {
-		if (isOnRoad _position) then { _cancel = true; _reason = "Cannot build on a road."; };
+		if (isOnRoad _position) then { _cancel = true; _reason = "ORIGINS: Cannot build on a road."; };
 	};
 
 	// No building in trader zones
-	if(!canbuild) then { _cancel = true; _reason = "Cannot build in a city."; };
+	if(!canbuild) then { _cancel = true; _reason = "ORIGINS: Cannot build in a city."; };
 
 	if(!_cancel) then {
 
@@ -312,7 +312,7 @@ if (_hasrequireditem) then {
 		};
 		_location = getPosATL _tmpbuilt;
 
-		cutText [format[(localize "str_epoch_player_138"),_name], "PLAIN DOWN"];
+		cutText [format[ "ORIGINS: Placing %1, move to cancel.",_name], "PLAIN DOWN"];
 
 		_limit = 3;
 
@@ -330,6 +330,12 @@ if (_hasrequireditem) then {
 		_counter = 0;
 
 		while {_isOk} do {
+			//missing part check fix
+			if !(_buildingpart in magazines player) exitWith {
+				_isOk = false;
+				_proceed = false;
+				cutText [format[ "ORIGINS: Cancelled building. Missing %1!",_buildingpart], "PLAIN DOWN", 5];
+			};
 
 			//[10,10] call dayz_HungerThirst;
 			player playActionNow "Medic";
@@ -364,7 +370,6 @@ if (_hasrequireditem) then {
 			};
 			r_doLoop = false;
 
-
 			if(!_finished) exitWith {
 				_isOk = false;
 				_proceed = false;
@@ -374,7 +379,7 @@ if (_hasrequireditem) then {
 				_counter = _counter + 1;
 			};
 
-			cutText [format[(localize "str_epoch_player_139"),_name, _counter,_limit], "PLAIN DOWN"];
+			cutText [format["ORIGINS: Constructing %1 stage %2 of %3, move to cancel.",_name, _counter,_limit], "PLAIN DOWN"];
 
 			if(_counter == _limit) exitWith {
 				_isOk = false;
@@ -384,7 +389,7 @@ if (_hasrequireditem) then {
 		};
 
 		if (_proceed) then {
-			cutText [format[localize "str_build_01",_name], "PLAIN DOWN"];
+			cutText [format[ "ORIGINS: You have constructed a %1",_name], "PLAIN DOWN"];
 
 			if (_isPole) then {
 				[] spawn player_plotPreview;
@@ -480,18 +485,18 @@ if (_hasrequireditem) then {
 					};
 				};
 				if (_classname in DZE_Origins_Stronghold) then {
-					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
+					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,_charID],[]];
 					//PVDZ_obj_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,dayz_combination,_activatingPlayer];
 					publicVariableServer  "PVDZ_obj_Publish";
 					player removeMagazine _buildingpart;
 					player removeMagazine "ItemEmerald";
-					cutText [format[(localize "str_epoch_player_140"),dayz_combination,_name], "PLAIN DOWN", 5];
-					systemChat format["You have setup your %2. Combination is %1",dayz_combination,_name];					
+					cutText [format[ "ORIGINS: You have setup your %2. Combination is %1",dayz_combination,_name], "PLAIN DOWN", 5];
+					systemChat format["ORIGINS: You have setup your %2. Combination is %1",dayz_combination,_name];					
 					uiSleep 5;
 					//[player,3] call GiveXP;
 				} else {
 					//PVDZ_obj_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,_charID,_activatingPlayer];
-					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,_playerUID],[]];
+					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,_charID],[]];
 					publicVariableServer  "PVDZ_obj_Publish";
 					player removeMagazine _buildingpart;
 					//cutText [format["You have build %1. DO NOT place gear in Origins buildings! Items wont safe!", _name], "PLAIN DOWN",5];
@@ -499,8 +504,14 @@ if (_hasrequireditem) then {
 				};
  
 			} else {
-				deleteVehicle _tmpbuilt;
-				localize "str_epoch_player_46" call dayz_rollingMessages;
+				if !(_buildingpart in magazines player) then{
+					deleteVehicle _tmpbuilt;
+					cutText [format[ "ORIGINS: Cancelled building. Missing %1!",_buildingpart], "PLAIN DOWN", 5];
+					deleteVehicle _tmpbuilt;
+				} else {
+					deleteVehicle _tmpbuilt;
+					"ORIGINS: Cancelled building. ERROR 1" call dayz_rollingMessages;
+				};
 			};
 
 		} else {
@@ -512,10 +523,10 @@ if (_hasrequireditem) then {
 
 			deleteVehicle _tmpbuilt;
 
-			localize "str_epoch_player_46" call dayz_rollingMessages;
+			"ORIGINS: Canceled building. Interupted" call dayz_rollingMessages;
 		};
 	} else {
-		format[localize "str_epoch_player_47",_text,_reason] call dayz_rollingMessages;
+		format[ "ORIGINS: Cancelled construction of %1, %2.",_text,_reason] call dayz_rollingMessages;
 	};
 };
 
