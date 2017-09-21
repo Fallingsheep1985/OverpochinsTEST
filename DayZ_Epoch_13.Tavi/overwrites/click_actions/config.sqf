@@ -41,6 +41,9 @@ DZE_CLICK_ACTIONS = [
 ["ItemGPS","Fast Travel Test","execVM 'scripts\fasttravel\opendialog.sqf'","true"],
 ["ItemGPS","Server Rules","execVM 'custom\menu\menu_init.sqf'","true"],
 ["ItemGPS","Hero Level 1 House TEST","['H1',5000,'Uroven1VelkaBudka','PartGeneric','Hero Level 1 House','house'] execVM 'origins\build_it.sqf';","true"],
+["ItemGPS","Hero Level 2 House TEST","['H2',5000,'Uroven2MalyDomek','PartGeneric','Hero Level 2 House','house'] execVM 'origins\build_it.sqf';","true"],
+["ItemGPS","Hero Level 3 House TEST","['H3',5000,'Uroven3VelkyDomek','PartGeneric','Hero Level 3 House','house'] execVM 'origins\build_it.sqf';","true"],
+["ItemGPS","Stronghold build TEST","['SHH',5000,'krepost','PartGeneric','Stronghold','garage'] execVM 'origins\build_it.sqf';","true"],
 
 ["ItemKnife","Harvest weed","execVM 'scripts\weed\hemp.sqf'","true"],
 ["ItemKiloHemp","Smoke weed","execVM 'scripts\weed\smokeshit.sqf'","true"]

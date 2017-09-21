@@ -123,7 +123,9 @@ _hasrequireditem = true;
 } count _require;
 
 if (!_hasrequireditem) exitWith {dayz_actionInProgress = false; cutText [format[ "ORIGINS: Cant Build Missing %1!",_missing] , "PLAIN DOWN"]; };
+
 if (_hasrequireditem) then {
+
 	_location = [0,0,0];
 	_isOk = true;
 
@@ -131,7 +133,9 @@ if (_hasrequireditem) then {
 	_location1 = getPosATL player;
 	_dir = getDir player;
 
+
 	_object = createVehicle [_classname, _location, [], 0, "CAN_COLLIDE"];
+
 	_object attachTo [player,_offset];
 	_position = getPosATL _object;
 	cutText [ "ORIGINS: PgUp to raise or PgDn to lower (Hold ALT to raise faster or CTRL slower), Q or E to flip 180. Space-Bar to build.", "PLAIN DOWN"];
@@ -318,8 +322,7 @@ if (_hasrequireditem) then {
 
 		if (DZE_StaticConstructionCount > 0) then {
 			_limit = DZE_StaticConstructionCount;
-		}
-		else {
+		} else {
 			if (isNumber (configFile >> "CfgVehicles" >> _classname >> "constructioncount")) then {
 				_limit = getNumber(configFile >> "CfgVehicles" >> _classname >> "constructioncount");
 			};
@@ -327,8 +330,8 @@ if (_hasrequireditem) then {
 
 		_isOk = true;
 		_proceed = false;
-		_counter = 0;
-
+		_counter = 0;	
+		
 		while {_isOk} do {
 			//missing part check fix
 			if !(_buildingpart in magazines player) exitWith {
@@ -409,25 +412,28 @@ if (_hasrequireditem) then {
 				_combination_6 = ceil(random 9);
 				_combination = format["%1%2%3%4%5%6",_combination_1,_combination_2,_combination_3,_combination_4,_combination_5,_combination_6];
 				dayz_combination = _combination;
+
 			
 			};
 			_combination_1 = floor(random 10);
 			_combination_2 = floor(random 10);
 			_combination_3 = floor(random 10);
 			_combination_4 = floor(random 10);
+
 			
 			_combination = format["%1%2%3%4",_combination_1,_combination_2,_combination_3,_combination_4];
 			_tmpbuilt setVariable ["OEMPos",_location,true];							
 			_tmpbuilt setVariable ["CharacterID",_combination,true]; //set combination as a character ID
 			_tmpbuilt setVariable ["OwnerUID",_playerUID, true];
-			_tmpbuilt setVariable ["ownerPUID",_playerUID, true];			
+			_tmpbuilt setVariable ["OwnerPUID",_playerUID, true];			
 			_tmpbuilt setVariable ["OwnerName",_playerName, true];
 			_activatingPlayer = player;
 			dayz_combination = _combination;
-			_combinationDisplay = _combination;
-			
 			
 			if (_proceed && (_buildingpart in magazines player)) then {
+				["Working",0,[20,10,5,0]] call dayz_NutritionSystem;
+				call player_forceSave;
+			
 				switch (_houselevel) do {
 					case 'B1' : {
 						owner_B1 set [count owner_B1, _playerUID];
@@ -484,19 +490,21 @@ if (_hasrequireditem) then {
 						player setVariable["DZE_Origins_SH",true,true];
 					};
 				};
+				
+				
 				if (_classname in DZE_Origins_Stronghold) then {
-					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,_charID],[]];
+				
+					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
 					//PVDZ_obj_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,dayz_combination,_activatingPlayer];
 					publicVariableServer  "PVDZ_obj_Publish";
 					player removeMagazine _buildingpart;
 					player removeMagazine "ItemEmerald";
-					cutText [format[ "ORIGINS: You have setup your %2. Combination is %1",dayz_combination,_name], "PLAIN DOWN", 5];
-					systemChat format["ORIGINS: You have setup your %2. Combination is %1",dayz_combination,_name];					
+					cutText [format[ "ORIGINS: You have setup your %2. Combination is %1",_combination,_name], "PLAIN DOWN", 5];
+					systemChat format["ORIGINS: You have setup your %2. Combination is %1",_combination,_name];					
 					uiSleep 5;
 					//[player,3] call GiveXP;
 				} else {
-					//PVDZ_obj_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,_charID,_activatingPlayer];
-					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,_charID],[]];
+					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
 					publicVariableServer  "PVDZ_obj_Publish";
 					player removeMagazine _buildingpart;
 					//cutText [format["You have build %1. DO NOT place gear in Origins buildings! Items wont safe!", _name], "PLAIN DOWN",5];
@@ -507,11 +515,15 @@ if (_hasrequireditem) then {
 				if !(_buildingpart in magazines player) then{
 					deleteVehicle _tmpbuilt;
 					cutText [format[ "ORIGINS: Cancelled building. Missing %1!",_buildingpart], "PLAIN DOWN", 5];
-					deleteVehicle _tmpbuilt;
 				} else {
 					deleteVehicle _tmpbuilt;
-					"ORIGINS: Cancelled building. ERROR 1" call dayz_rollingMessages;
+					"ORIGINS: Cancelled building. ERROR 1 - please report to an admin!" call dayz_rollingMessages;
 				};
+			};
+			//add god mode check
+			if (DZE_GodModeBase && {!(_classname in DZE_GodModeBaseExclude)}) then {
+				_tmpbuilt addEventHandler ["HandleDamage",{false}];
+				_tmpbuilt enableSimulation false;
 			};
 
 		} else {
@@ -523,7 +535,7 @@ if (_hasrequireditem) then {
 
 			deleteVehicle _tmpbuilt;
 
-			"ORIGINS: Canceled building. Interupted" call dayz_rollingMessages;
+			"ORIGINS: Cancelled building. Interrupted" call dayz_rollingMessages;
 		};
 	} else {
 		format[ "ORIGINS: Cancelled construction of %1, %2.",_text,_reason] call dayz_rollingMessages;

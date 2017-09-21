@@ -273,12 +273,57 @@ if(DZE_Origins_Building_System) then {
 			private["_ownerUID","_ownerName","_playerUID","_state","_openClose"];
 			_playerUID = dayz_playerUID;
 			_ownerUID = _cursorTarget getVariable ["OwnerUID","0"];
+			_ownerPUID =_cursorTarget getVariable ["OwnerPUID","0"];	
 			_ownerName = _cursorTarget getVariable ["OwnerName","0"];
 			
-			if(_playerUID != _ownerUID && !(_typeOfCursorTarget in DZE_Origins_Stronghold)) exitWith {
+			
+			/*chnage to use plot pole check
+			if(_playerUID != _ownerUID && !(_typeOfCursorTarget in DZE_Origins_Stronghold)) exitwith {
 				cutText [format["This house was built by %1", _ownerName], "PLAIN DOWN",5];
 				sleep 5;
 			};
+			*/
+			//Origins building check plotpole owner
+
+			_ownerID = 0;
+			_friendlies = [];
+			_canOPEN = false;
+			_plotcheck = [player, false] call FNC_find_plots;
+			_distance = DZE_PlotPole select 0;
+
+			_IsNearPlot = _plotcheck select 1;
+			_nearestPole = _plotcheck select 2;
+
+			if (_IsNearPlot == 0) then {
+				_canOPEN = false;
+			} else {
+				_ownerID = _nearestPole getVariable["CharacterID","0"];
+				if (dayz_characterID == _ownerID) then {
+					_canOPEN = true;
+				} else {
+					if (DZE_permanentPlot) then {
+						_buildcheck = [player, _nearestPole] call FNC_check_access;
+						_isowner = _buildcheck select 0;
+						_isfriendly = ((_buildcheck select 1) or (_buildcheck select 3));
+						if (_isowner || _isfriendly) then {
+							_canOPEN = true;
+						} else {
+							_canOPEN = false;
+						};
+					} else {
+						_friendlies	= player getVariable ["friendlyTo",[]];
+						if (_ownerID in _friendlies) then {
+							_canOPEN = true;
+						} else {
+							_canOPEN = false;
+						};
+					};
+				};
+			};
+			if (!(_canOPEN)&& !(_typeOfCursorTarget in DZE_Origins_Stronghold)) exitWith {
+				cutText [format["You dont have permission to access this building!"], "PLAIN DOWN",5];
+			};
+			
 			_state = (_cursorTarget getVariable ["CanBeUpdated",false]);
 			if(_typeOfCursorTarget in DZE_Origins_Stronghold && _state) then {
 				private["_strongholdDoorsOpen"];
