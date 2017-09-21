@@ -64,6 +64,10 @@ if (isServer) then {
 	};
 
 	for "_x" from 1 to _unitnumber do {
+	
+		//undefined fix
+	_gearmagazines		=[];
+	_geartools			=[];
 
 		call {
 			if(typeName(_gun) == "SCALAR") then {
@@ -87,25 +91,27 @@ if (isServer) then {
 				if(_gear == 0) 			exitWith { _aigear = ai_gear0; };
 				if(_gear == 1) 			exitWith { _aigear = ai_gear1; };
 			} else {
-				if(_gear == "random") 	exitWith { _aigear = ai_gear_random call BIS_fnc_selectRandom; };
+				_aigear = ai_gear_random call BIS_fnc_selectRandom;
 			};
 		};
 		//defualts if null
 		AI_GEARMAGS = ["ItemBandage","ItemBandage","ItemAntibiotic"];
 		AI_GEARTOOLS = ["ItemRadio","ItemMachete","ItemCrowbar"];
 		//Fix undefined error
-		if (_gearmagazines == "none" || _gearmagazines == "SCALAR")then {
+		if (isnil "_gearmagazines")then {
 			_gearmagazines = AI_GEARMAGS;
 		} else {
 			_gearmagazines 		= _aigear select 0;
 		};
 		// fix zero divisor error
-		if (_geartools == "none" || _geartools == "SCALAR")then {
+		if (isnil "_geartools")then {
 			_geartools = AI_GEARTOOLS;
 		} else {
 			_geartools 		= _aigear select 1;
 		};	
-
+		if (_skin == "") then {
+			_skin = "random";
+		};
 		call {
 			if(_skin == "random") 	exitWith { _aiskin = ai_all_skin 		call BIS_fnc_selectRandom; };
 			if(_skin == "hero") 	exitWith { _aiskin = ai_hero_skin 		call BIS_fnc_selectRandom; };
