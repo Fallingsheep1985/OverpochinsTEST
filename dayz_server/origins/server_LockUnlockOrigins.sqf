@@ -9,7 +9,7 @@ _update = false;
 _combinationEntry = _this select 4;
 _combinationStronghold = _originsBuilding getVariable ["CharacterID","0"];
 
-if(_playerUID != _ownerUID && !(_typeOfOriginsBuilding in DZE_Origins_Stronghold)) exitWith { diag_log("Origins: House is not yours");};
+//if(_playerUID != _ownerUID && !(_typeOfOriginsBuilding in DZE_Origins_Stronghold)) exitWith { diag_log("Origins: House is not yours");};
 if(_typeOfOriginsBuilding in DZE_Origins_Stronghold && _combinationEntry != _combinationStronghold) exitWith{diag_log("Origins: Wrong Stronghold Code");};
 
 if(!_action) then {
@@ -32,6 +32,9 @@ if(_typeOfOriginsBuilding in DZE_Origins_Stronghold) then {
 		_originsBuilding animate [_x,_state];
 	} count ['vrata','hride1','kolo1','vaha','kolo2','svich'];
 };
+
+//INVENTORY DOSNT WORK :(
+/* 
 if(!_update) then {
 	private["_inventory"];
 	clearWeaponCargoGlobal  _originsBuilding;
@@ -86,4 +89,5 @@ if(!_update) then {
 		} count _objWpnTypes;
 	};
 };
+*/
 _originsBuilding setVariable ["CanBeUpdated",_update, true];

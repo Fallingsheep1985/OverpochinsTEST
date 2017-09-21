@@ -365,14 +365,14 @@ if ((playersNumber west + playersNumber civilian) == 0) exitWith {
 				};
 			};
 		};
-					if(_type in DZE_Origins_Buildings) then {
+		if(_type in DZE_Origins_Buildings) then {
 				//diag_log format["Origins Object: %1 - %2", _type,_ownerID];
 				_object setVariable ["CanBeUpdated",false, true];
 				{
 					_object setVariable ["OwnerUID",(_x select 0), true];
 					_object setVariable ["OwnerName",(_x select 1), true];
-				}   count _hitPoints;
-				_ownerUID = _object getVariable ["OwnerUID","0"];
+				} count _hitPoints;
+					_ownerUID = _object getVariable ["OwnerUID","0"];
 				switch(_type) do {
 					case "Uroven1DrevenaBudka"  : { owner_B1 set [count owner_B1, _ownerUID];};
 					case "Uroven2KladaDomek"    : { owner_B2 set [count owner_B2, _ownerUID];};
@@ -385,9 +385,9 @@ if ((playersNumber west + playersNumber civilian) == 0) exitWith {
 					case "kingramida"           : { owner_KING set [count owner_KING, _ownerUID];};
 					case "krepost"              : { owner_SH set [count owner_SH, _ownerUID];};
 				};
-				if((_pos select 2) < 0.25) then {
-					_object setVectorUp surfaceNormal position _object;
-				};
+					if((_pos select 2) < 0.25) then {
+						_object setVectorUp surfaceNormal position _object;
+					};
 				_object setVectorUp surfaceNormal position _object;
 			}; 
 		dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_object]; //Monitor the object
