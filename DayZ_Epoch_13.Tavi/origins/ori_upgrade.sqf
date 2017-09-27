@@ -23,9 +23,9 @@ if ("PartGeneric" in magazines player) then {
 		if (_st == _hitpoint) then { _selection = _st; };
 	};
 		
-	PVDZE_veh_SFix = [_vehicle,_selection,0];
-	publicVariable "PVDZE_veh_SFix";
-	if (local _vehicle) then { PVDZE_veh_SFix call object_setFixServer; };
+	PVDZ_veh_SF = [_vehicle,_selection,0];
+	publicVariable "PVDZ_veh_SF";
+	if (local _vehicle) then { PVDZ_veh_SF call object_setFixServer; };
 
 	_vehicle setVelocity [0,0,1];
 	cutText [format[(localize "str_epoch_player_166"),"Scrap metal",_nameType], "PLAIN DOWN"];

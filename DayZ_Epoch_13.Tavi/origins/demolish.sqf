@@ -16,10 +16,10 @@ _func_databaseremove = {
     sleep 5;
     _nil = [objNull, player, rSAY, "z_demolishwall_0"] call RE;    
     
-    PVDZE_obj_Delete = [_objectID,_objectUID,player];
-    publicVariableServer "PVDZE_obj_Delete";
+    PVDZ_obj_Destroy = [_objectID,_objectUID,player];
+    publicVariableServer "PVDZ_obj_Destroy";
     if (isServer) then {
-        PVDZE_obj_Delete call server_deleteObj;
+        PVDZ_obj_Destroy call server_deleteObj;
     };
     titleText [format["%1 Demolished!",typeOf(_nearestBuilding)],"plain"];titleFadeOut 3;
     deletevehicle _nearestBuilding;
