@@ -33,8 +33,7 @@ if(_typeOfOriginsBuilding in DZE_Origins_Stronghold) then {
 	} count ['vrata','hride1','kolo1','vaha','kolo2','svich'];
 };
 
-//INVENTORY DOSNT WORK :(
-/* 
+
 if(!_update) then {
 	private["_inventory"];
 	clearWeaponCargoGlobal  _originsBuilding;
@@ -46,48 +45,44 @@ if(!_update) then {
 		getBackpackCargo _originsBuilding
 	];
 	_originsBuilding setVariable["lastInventory",_inventory];
-} else {
-	clearWeaponCargoGlobal  _originsBuilding;
-	clearMagazineCargoGlobal  _originsBuilding;
-	clearBackpackCargoGlobal _originsBuilding;
-	_weapons = 	_originsBuilding getVariable["WeaponCargo",[]];
-	_magazines = _originsBuilding getVariable["MagazineCargo",[]];
-	_backpacks = _originsBuilding getVariable["BackpackCargo",[]];
+	} else {
+		clearWeaponCargoGlobal  _originsBuilding;
+		clearMagazineCargoGlobal  _originsBuilding;
+		clearBackpackCargoGlobal _originsBuilding;
+		_weapons = 	_originsBuilding getVariable["WeaponCargo",[]];
+		_magazines = _originsBuilding getVariable["MagazineCargo",[]];
+		_backpacks = _originsBuilding getVariable["BackpackCargo",[]];
 	if (count _weapons > 0) then {
-		//Add weapons
-		_objWpnTypes = 	_weapons select 0;
-		_objWpnQty = 	_weapons select 1;
-		_countr = 0;
+		_objWpnTypes = _weapons select 0;
+		_objWpnQty = _weapons select 1;
+		_counter = 0;
 		{
-			_originsBuilding addweaponcargoGlobal [_x,(_objWpnQty select _countr)];
-			_countr = _countr + 1;
+			_originsBuilding addWeaponCargoGlobal [_x,(_objWpnQty select _counter)];
+			_counter = _counter + 1;
 		} count _objWpnTypes;
 	};
 
 	if (count _magazines > 0) then {
-		//Add Magazines
 		_objWpnTypes = _magazines select 0;
 		_objWpnQty = _magazines select 1;
-		_countr = 0;
+		_counter = 0;
 		{
-			if( _x != "CSGAS" ) then
-			{
-				_originsBuilding addmagazinecargoGlobal [_x,(_objWpnQty select _countr)];
-				_countr = _countr + 1;
+			if (_x != "CSGAS") then {
+				_originsBuilding addMagazineCargoGlobal [_x,(_objWpnQty select _counter)];
+				_counter = _counter + 1;
 			};
 		} count _objWpnTypes;
 	};
 
 	if (count _backpacks > 0) then {
-		//Add Backpacks
 		_objWpnTypes = _backpacks select 0;
 		_objWpnQty = _backpacks select 1;
-		_countr = 0;
+		_counter = 0;
 		{
-			_originsBuilding addbackpackcargoGlobal [_x,(_objWpnQty select _countr)];
-			_countr = _countr + 1;
+			_originsBuilding addBackpackCargoGlobal [_x,(_objWpnQty select _counter)];
+			_counter = _counter + 1;
 		} count _objWpnTypes;
 	};
 };
-*/
+
 _originsBuilding setVariable ["CanBeUpdated",_update, true];
