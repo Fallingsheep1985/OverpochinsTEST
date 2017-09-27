@@ -296,7 +296,6 @@ if (_canBuildOnPlot) then{
 		};
 	} count _findNearestB2s;
 */
-	// check level 1 house nearby
 	_findNearestB1s = nearestObjects [(vehicle player), ["Uroven1DrevenaBudka","Uroven1VelkaBudka"], _distance];
 	_findNearestB1 = [];
 	{
@@ -304,7 +303,12 @@ if (_canBuildOnPlot) then{
 			_findNearestB1 set [(count _findNearestB1),_x];
 		};
 	} count _findNearestB1s;
-	_hasLevel1 = count (_findNearestB1);
+	_hasLevel1x = count (_findNearestB1);
+	if(_hasLevel1x > 0)then{
+	_hasLevel1 = true;
+	}else{
+	_hasLevel1 = false;
+	};
 	// check level 2 house nearby
 	_findNearestB2s = nearestObjects [(vehicle player), ["Uroven2KladaDomek","Uroven2MalyDomek"], _distance];
 	_findNearestB2 = [];
@@ -313,7 +317,11 @@ if (_canBuildOnPlot) then{
 			_findNearestB2 set [(count _findNearestB2),_x];
 		};
 	} count _findNearestB2s;
-	_hasLevel2 = count (_findNearestB2);
+	_hasLevel2x = count (_findNearestB2);
+	if(_hasLevel2x > 0)then{_hasLevel2 = true;
+	}else{
+	_hasSH = false;
+	};
 	// check level 3 house nearby
 	_findNearestB3s = nearestObjects [(vehicle player), ["Uroven3DrevenyDomek","Uroven3VelkyDomek"], _distance];
 	_findNearestB3 = [];
@@ -322,7 +330,12 @@ if (_canBuildOnPlot) then{
 			_findNearestB3 set [(count _findNearestB3),_x];
 		};
 	} count _findNearestB3s;
-	_hasLevel3 = count (_findNearestB3);
+	_hasLevel3x = count (_findNearestB3);
+	if(_hasLevel3x > 0)then{
+	_hasLevel3 = true;
+	}else{
+	_hasLevel3 = false;
+	};
 	
 	_findNearestSHs = nearestObjects [(vehicle player), ["krepost"], _distance];
 	_findNearestSH = [];
@@ -332,16 +345,12 @@ if (_canBuildOnPlot) then{
 		};
 	} count _findNearestSHs;
 	
-	_hasSH = count (_findNearestSH);
-	
-	_findNearestLGs = nearestObjects [(vehicle player), ["velkaGaraz"], _distance];
-	_findNearestLG = [];
-	{
-		if (alive _x) then {
-			_findNearestLG set [(count _findNearestLG),_x];
-		};
-	} count _findNearestLGs;
-	_hasLG = count (_findNearestLG);
+	_hasSHx = count (_findNearestSH);
+	if(_hasSHx > 0)then{
+	_hasSH = true;
+	}else{
+	_hasSH = false;
+	};
 	
 };
 				//_hasLevel1 = (_playerUID in owner_H1 || _playerUID in owner_B1);
@@ -363,16 +372,16 @@ if (_canBuildOnPlot) then{
 					_canBuildSH = false;
 					
 					if((_humanityNeed > 0 && _humanity >= _humanityNeed) || (_humanityNeed < 0 && _humanity <= _humanityNeed)) then {
-						if(_houselevel in ["H1","B1"] && !_hasLevel1) then {
+						if(_houselevel in ["H1","B1"]) then {
 							_canBuildHouse = true;
 						};
-						if(_houselevel in ["H2","B2"] && !_hasLevel2) then {
+						if(_houselevel in ["H2","B2"]) then {
 							_canBuildHouse = true;
 						};
-						if(_houselevel in ["H3","B3"] && !_hasLevel3) then {
+						if(_houselevel in ["H3","B3"]) then {
 							_canBuildHouse = true;
 						};
-						if(_houselevel in ["SGH","SGB"] && _hasLevel1) then {
+						if(_houselevel in ["SGH","SGB"]) then {
 							_canBuildGarage = true;
 						} else {
 							if(!_hasLevel1)then{

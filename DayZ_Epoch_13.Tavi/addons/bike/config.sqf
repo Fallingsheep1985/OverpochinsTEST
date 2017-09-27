@@ -35,9 +35,9 @@ DZE_DEPLOYABLES_CONFIG = [
 	["ItemToolbox",[0,6,2.2],5,0.3,false,false,false,false,false,true,true,["Ka137_PMC"],[],["ItemFuelBarrelEmpty","PartEngine","PartVRotor"],"true"],
 	// deploy Garage
 //	_clickItem			_deployOffset	_packDistance	_damageLimit	_packAny	_cargo		_ammo	_hive	_plot	_simulation _road	_deployables					_near	_parts				_condition
-    ["ItemToolbox",	[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["Land_MBG_Garage_Single_C"],	[],		["PartGeneric"],	"true"],
+    ["ItemToolbox",	[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	false,		false,	["Land_MBG_Garage_Single_C"],	[],		["PartGeneric"],	"true"],
 	// Garage Spawn-Point
-	["ItemToolbox",		[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["HeliHCivil"],					[],		["PartGeneric"],		"true"]
+	["ItemToolbox",		[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	false,		false,	["HeliHCivil"],					[],		["PartGeneric"],		"true"]
 	
 	
     // deploy fortifications from etool 3 meters in front of player that are permanent until server restart

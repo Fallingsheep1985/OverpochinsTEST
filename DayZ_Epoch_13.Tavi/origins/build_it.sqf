@@ -1,4 +1,4 @@
-private ["_hero1","_hero2","_hero3","_garage1","_garage2","_pyramid1","_stronghold1","_bandit1","_bandit2","_bandit3","_houselevel","_humanityNeed","_classname","_buildingpart","_name","_case","_humanity","_playerUID","_hasLevel1","_hasLevel2","_hasLevel3","_hasSG","_hasLG","_hasKING","_hasSH","_canBuild","_hasone"];
+private ["_canBuildOnPlot","_hero1","_hero2","_hero3","_garage1","_garage2","_pyramid1","_stronghold1","_bandit1","_bandit2","_bandit3","_houselevel","_humanityNeed","_classname","_buildingpart","_name","_case","_humanity","_playerUID","_hasLevel1","_hasLevel2","_hasLevel3","_hasSG","_hasLG","_hasKING","_hasSH","_canBuild","_hasone"];
 closeDialog 0;
 _houselevel = _this select 0;	// H1
 _humanityNeed = _this select 1;	// 5000
@@ -12,7 +12,7 @@ _playerUID = dayz_playerUID;
 // Need Near Requirements
 _abort = false;
 _reason = "";
-
+_canBuildOnPlot = false;
 _classnametmp = _classname;
 
 _requireplot = DZE_requireplot;
@@ -62,7 +62,8 @@ if(_IsNearPlot == 0) then {  // no plot pole close
 	_hasAccess 	= false;
 	_hasAccess 	= [player, _nearestPole] call FNC_check_access;
 	_allowed 	= ((_hasAccess select 0) or (_hasAccess select 2) or (_hasAccess select 3) or (_hasAccess select 4));
-	_can_build_stronghold = _hasAccess select 0
+	_can_build_stronghold = ((_hasAccess select 0) or (_hasAccess select 2));
+	can_build_stronghold = _can_build_stronghold;
 	// 0= owner + 2= plot owner + 3= plot friends + 4=plot admins  
 	if(_allowed) then {  //Keep ownership
 		// owner can build anything within his plot except other plots
@@ -108,7 +109,12 @@ if (_canBuildOnPlot) then{
 			_findNearestB1 set [(count _findNearestB1),_x];
 		};
 	} count _findNearestB1s;
-	_hasLevel1 = count (_findNearestB1);
+	_hasLevel1x = count (_findNearestB1);
+	if(_hasLevel1x > 0)then{
+	_hasLevel1 = true;
+	}else{
+	_hasLevel1 = false;
+	};
 	// check level 2 house nearby
 	_findNearestB2s = nearestObjects [(vehicle player), ["Uroven2KladaDomek","Uroven2MalyDomek"], _distance];
 	_findNearestB2 = [];
@@ -117,7 +123,11 @@ if (_canBuildOnPlot) then{
 			_findNearestB2 set [(count _findNearestB2),_x];
 		};
 	} count _findNearestB2s;
-	_hasLevel2 = count (_findNearestB2);
+	_hasLevel2x = count (_findNearestB2);
+	if(_hasLevel2x > 0)then{_hasLevel2 = true;
+	}else{
+	_hasSH = false;
+	};
 	// check level 3 house nearby
 	_findNearestB3s = nearestObjects [(vehicle player), ["Uroven3DrevenyDomek","Uroven3VelkyDomek"], _distance];
 	_findNearestB3 = [];
@@ -126,7 +136,12 @@ if (_canBuildOnPlot) then{
 			_findNearestB3 set [(count _findNearestB3),_x];
 		};
 	} count _findNearestB3s;
-	_hasLevel3 = count (_findNearestB3);
+	_hasLevel3x = count (_findNearestB3);
+	if(_hasLevel3x > 0)then{
+	_hasLevel3 = true;
+	}else{
+	_hasLevel3 = false;
+	};
 	
 	_findNearestSHs = nearestObjects [(vehicle player), ["krepost"], _distance];
 	_findNearestSH = [];
@@ -136,19 +151,23 @@ if (_canBuildOnPlot) then{
 		};
 	} count _findNearestSHs;
 	
-	_hasSH = count (_findNearestSH);
+	_hasSHx = count (_findNearestSH);
+	if(_hasSHx > 0)then{
+	_hasSH = true;
+	}else{
+	_hasSH = false;
+	};
 	
+} else {
+//default to old orgins method (dosnt work but sets variables up)
+	_hasLevel1 = (_playerUID in owner_H1 || _playerUID in owner_B1);
+	_hasLevel2 = (_playerUID in owner_H2 || _playerUID in owner_B2);
+	_hasLevel3 = (_playerUID in owner_H3 || _playerUID in owner_B3);
+	_hasSG = (_playerUID in owner_SG);
+	_hasLG = (_playerUID in owner_LG);
+	_hasKING = (_playerUID in owner_KING);
+	_hasSH = (_playerUID in owner_SH);
 };
-
-
-
-//_hasLevel1 = (_playerUID in owner_H1 || _playerUID in owner_B1);
-//_hasLevel2 = (_playerUID in owner_H2 || _playerUID in owner_B2);
-//_hasLevel3 = (_playerUID in owner_H3 || _playerUID in owner_B3);
-_hasSG = (_playerUID in owner_SG);
-_hasLG = (_playerUID in owner_LG);
-_hasKING = (_playerUID in owner_KING);
-//_hasSH = (_playerUID in owner_SH);
 
 _canBuild = false;
 _hasone = false;
@@ -156,9 +175,9 @@ _hasone = false;
 switch (_case) do {		
 	case "house": {
 		if ((_humanityNeed > 0 && _humanity >= _humanityNeed) || (_humanityNeed < 0 && _humanity <= _humanityNeed)) then {
-			if (_houselevel in ["H1","B1"] && !_hasLevel1) then { _canBuild = true; };
-			if (_houselevel in ["H2","B2"] && !_hasLevel2) then { _canBuild = true; };
-			if (_houselevel in ["H3","B3"] && !_hasLevel3) then { _canBuild = true; };
+			if (_houselevel in ["H1","B1"] ) then { _canBuild = true; };
+			if (_houselevel in ["H2","B2"] ) then { _canBuild = true; };
+			if (_houselevel in ["H3","B3"] ) then { _canBuild = true; };
 		} else {
 			cutText [format["You do not have %1 humanity for this house!",_humanityNeed], "PLAIN DOWN"];
 		};
