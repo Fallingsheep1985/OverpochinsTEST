@@ -23,17 +23,21 @@
 // _near         | array of items required nearby to build (workshop/fire/fueltank)    | array  | []
 // _parts        | array of parts required to build (will be taken from player)        | array  | ["ItemToolbox"]
 // _condition    | string of code to evaluate to determine whether action is shown     | string | "!(isNull player) && {(getPlayerUID player) in DZE_DEPLOYABLE_ADMINS}"
+//add to safe objects for DB saving
+
+DZE_DEPLOYABLES_NEW = ["Land_MBG_Garage_Single_C","HeliHCivil"];
+DayZ_SafeObjects = DayZ_SafeObjects + DZE_DEPLOYABLES_NEW;
 
 DZE_DEPLOYABLES_CONFIG = [
     // deploy a non-permanent bike from a toolbox right in front of the player that can be re-packed by the owner as long as it's under 10% damage
     ["ItemToolbox",[0,6,1],5,1,false,false,false,false,false,true,true,["MMT_Civ"],[],["PartGeneric"],"true"],
 	["ItemToolbox",[0,6,2.2],5,0.3,false,false,false,false,false,true,true,["AH6X_DZ"],[],["PartGeneric","PartEngine","PartVRotor"],"true"],
-	["ItemToolbox",[0,6,2.2],5,0.3,false,false,false,false,false,true,true,["Ka137_PMC"],[],["ItemFuelBarrelEmpty","PartEngine","PartVRotor"],"true"]
+	["ItemToolbox",[0,6,2.2],5,0.3,false,false,false,false,false,true,true,["Ka137_PMC"],[],["ItemFuelBarrelEmpty","PartEngine","PartVRotor"],"true"],
 	// deploy Garage
 //	_clickItem			_deployOffset	_packDistance	_damageLimit	_packAny	_cargo		_ammo	_hive	_plot	_simulation _road	_deployables					_near	_parts				_condition
-    //["ItemTrashPaper",	[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["Land_MBG_Garage_Single_C"],	[],		["ItemTrashPaper"],	"true"],
+    ["ItemToolbox",	[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["Land_MBG_Garage_Single_C"],	[],		["PartGeneric"],	"true"],
 	// Garage Spawn-Point
-	//["ItemCards",		[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["HeliHCivil"],					[],		["ItemCards"],		"true"]
+	["ItemToolbox",		[0,6,0],		5,				-1,				false,		false,		false,	true,	true,	true,		false,	["HeliHCivil"],					[],		["PartGeneric"],		"true"]
 	
 	
     // deploy fortifications from etool 3 meters in front of player that are permanent until server restart
