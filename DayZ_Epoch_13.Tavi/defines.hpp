@@ -177,7 +177,7 @@ class RscButton
     w = 0.095589;
     h = 0.039216;
     shadow = 2;
-    font = "PuristaMedium";
+    font = "Zeppelin32";
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
     offsetX = 0;
     offsetY = 0;
@@ -541,21 +541,21 @@ class RscShortcutButtonMain
           bottom = 0;
        };
        period = 0.5;
-       font = "PuristaMedium";
+       font = "Zeppelin32";
        size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
        text = "";
        action = "";
        class Attributes
        {
-          font = "PuristaMedium";
+          font = "Zeppelin32";
           color = "#E5E5E5";
           align = "left";
           shadow = "false";
        };
        class AttributesImage
        {
-          font = "PuristaMedium";
+          font = "Zeppelin32";
           color = "#E5E5E5";
           align = "false";
        };
@@ -599,7 +599,7 @@ class IGUIBack
           0,
           0
        };
-       font = "PuristaMedium";
+       font = "Zeppelin32";
        sizeEx = 0;
        shadow = 0;
        x = 0.1;
@@ -826,7 +826,7 @@ class RscTextCheckBox
           0,
           0.65
        };
-       font = "PuristaMedium";
+       font = "Zeppelin32";
        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
        rows = 1;
        columns = 1;
@@ -947,7 +947,7 @@ class RscButtonMenu
        };
        class Attributes
        {
-          font = "PuristaLight";
+          font = "Zeppelin32";
           color = "#E5E5E5";
           align = "left";
           shadow = "false";
