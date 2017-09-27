@@ -205,13 +205,152 @@ if(DZE_Origins_Building_System) then {
 				private["_humanity","_playerUID","_hasLevel1","_hasLevel2","_hasLevel3","_hasSG","_hasLG","_hasKING","_hasSH","_canBuildHouse","_houselevel","_humanityNeed","_actionText","_classname","_neededMaterials","_canBuildSH","_canBuildGarage"];
 				_humanity = player getVariable["humanity",0];
 				_playerUID = dayz_playerUID;
-				_hasLevel1 = (_playerUID in owner_H1 || _playerUID in owner_B1);
-				_hasLevel2 = (_playerUID in owner_H2 || _playerUID in owner_B2);
-				_hasLevel3 = (_playerUID in owner_H3 || _playerUID in owner_B3);
-				_hasSG = (_playerUID in owner_SG);
-				_hasLG = (_playerUID in owner_LG);
-				_hasKING = (_playerUID in owner_KING);
-				_hasSH = (_playerUID in owner_SH);
+				
+				// Need Near Requirements
+_abort = false;
+_reason = "";
+
+_classnametmp = _classname;
+
+_requireplot = DZE_requireplot;
+_isAllowedUnderGround = 0;
+
+if (_classname in DZE_Origins_Stronghold) then {
+	_offset = [0,30,0];
+} else {
+	_offset = [0,10,0];
+};
+
+_isPole = (_classname == "Plastic_Pole_EP1_DZ");
+_isLandFireDZ = (_classname == "Land_Fire_DZ");
+
+_distance = DZE_PlotPole select 0;
+_needText = "ORIGINS: Plot Pole";
+
+if(_isPole) then {
+	_distance = DZE_PlotPole select 1;
+};
+
+// check for near plot
+_findNearestPoles = nearestObjects [(vehicle player), ["Plastic_Pole_EP1_DZ"], _distance];
+_findNearestPole = [];
+
+{
+	if (alive _x) then {
+		_findNearestPole set [(count _findNearestPole),_x];
+	};
+} count _findNearestPoles;
+
+_IsNearPlot = count (_findNearestPole);
+
+// If item is plot pole && another one exists within 45m
+if(_isPole && _IsNearPlot > 0) exitWith {  dayz_actionInProgress = false; cutText [ "ORIGINS: To close to another PlotPole!" , "PLAIN DOWN"]; };
+
+if(_IsNearPlot == 0) then {  // no plot pole close
+	// Allow building of plot
+	if(_requireplot == 0 || _isLandFireDZ) then {
+		_canBuildOnPlot = true;
+	};
+} else { // there is a plot pole close
+	// check nearby plots ownership && then for friend status
+	_nearestPole = _findNearestPole select 0;
+
+	// Find owner	
+	_hasAccess 	= false;
+	_hasAccess 	= [player, _nearestPole] call FNC_check_access;
+	_allowed 	= ((_hasAccess select 0) or (_hasAccess select 2) or (_hasAccess select 3) or (_hasAccess select 4));
+	// 0= owner + 2= plot owner + 3= plot friends + 4=plot admins  
+	if(_allowed) then {  //Keep ownership
+		// owner can build anything within his plot except other plots
+		_canBuildOnPlot = true; // 0= owner + 2= plot owner + 3= plot friends + 4=plot admins -> can build
+	};
+	if(_isPole) then { // not if it is a plot
+		_canBuildOnPlot = false;
+	};
+};
+
+if (_canBuildOnPlot) then{
+/*
+	_findNearestKINGs = nearestObjects [(vehicle player), ["kingramida"], _distance];
+	_findNearestKING = [];
+	{
+		if (alive _x) then {
+			_findNearestKING set [(count _findNearestKING),_x];
+		};
+	} count _findNearestKINGs;
+	_hasKING = count (_findNearestKING);
+	
+	
+	_findNearestSGs = nearestObjects [(vehicle player), ["malaGaraz"], _distance];
+	_findNearestSG = [];
+	{
+		if (alive _x) then {
+			_findNearestB2 set [(count _findNearestB2),_x];
+		};
+	} count _findNearestB2s;
+	_findNearestSHs = nearestObjects [(vehicle player), ["krepost"], _distance];
+	_findNearestSH = [];
+	{
+		if (alive _x) then {
+			_findNearestB2 set [(count _findNearestB2),_x];
+		};
+	} count _findNearestB2s;
+*/
+	// check level 1 house nearby
+	_findNearestB1s = nearestObjects [(vehicle player), ["Uroven1DrevenaBudka","Uroven1VelkaBudka"], _distance];
+	_findNearestB1 = [];
+	{
+		if (alive _x) then {
+			_findNearestB1 set [(count _findNearestB1),_x];
+		};
+	} count _findNearestB1s;
+	_hasLevel1 = count (_findNearestB1);
+	// check level 2 house nearby
+	_findNearestB2s = nearestObjects [(vehicle player), ["Uroven2KladaDomek","Uroven2MalyDomek"], _distance];
+	_findNearestB2 = [];
+	{
+		if (alive _x) then {
+			_findNearestB2 set [(count _findNearestB2),_x];
+		};
+	} count _findNearestB2s;
+	_hasLevel2 = count (_findNearestB2);
+	// check level 3 house nearby
+	_findNearestB3s = nearestObjects [(vehicle player), ["Uroven3DrevenyDomek","Uroven3VelkyDomek"], _distance];
+	_findNearestB3 = [];
+	{
+		if (alive _x) then {
+			_findNearestB3 set [(count _findNearestB3),_x];
+		};
+	} count _findNearestB3s;
+	_hasLevel3 = count (_findNearestB3);
+	
+	_findNearestSHs = nearestObjects [(vehicle player), ["krepost"], _distance];
+	_findNearestSH = [];
+	{
+		if (alive _x) then {
+			_findNearestSH set [(count _findNearestSH),_x];
+		};
+	} count _findNearestSHs;
+	
+	_hasSH = count (_findNearestSH);
+	
+	_findNearestLGs = nearestObjects [(vehicle player), ["velkaGaraz"], _distance];
+	_findNearestLG = [];
+	{
+		if (alive _x) then {
+			_findNearestLG set [(count _findNearestLG),_x];
+		};
+	} count _findNearestLGs;
+	_hasLG = count (_findNearestLG);
+	
+};
+				//_hasLevel1 = (_playerUID in owner_H1 || _playerUID in owner_B1);
+				//_hasLevel2 = (_playerUID in owner_H2 || _playerUID in owner_B2);
+				//_hasLevel3 = (_playerUID in owner_H3 || _playerUID in owner_B3);
+				//_hasSG = (_playerUID in owner_SG);
+				//_hasLG = (_playerUID in owner_LG);
+				//_hasKING = (_playerUID in owner_KING);
+				//_hasSH = (_playerUID in owner_SH);
 				
 				{
 					_houselevel = _x select 0;
@@ -233,17 +372,40 @@ if(DZE_Origins_Building_System) then {
 						if(_houselevel in ["H3","B3"] && !_hasLevel3) then {
 							_canBuildHouse = true;
 						};
-						if(_houselevel in ["SGH","SGB"] && _hasLevel1 && !_hasSG) then {
+						if(_houselevel in ["SGH","SGB"] && _hasLevel1) then {
 							_canBuildGarage = true;
+						} else {
+							if(!_hasLevel1)then{
+							cutText [format["You need a Level 1 house first!",name player,_name], "PLAIN DOWN"];
+							};
 						};
-						if(_houselevel in ["LGH","LGB"] && _hasLevel3 && !_hasLG) then {
+						if(_houselevel in ["LGH","LGB"] && _hasLevel3) then {
 							_canBuildGarage = true;
+						} else {
+							if(!_hasLevel1)then{
+							cutText [format["You need a Level 3 house first!",name player,_name], "PLAIN DOWN"];
+							};
 						};
 						if(_houselevel in ["KINGH","KINGB"] && _hasLevel3 && _hasLG && !_hasKING) then {
+							if !("ItemEmerald" in magazines player) exitWith { cutText [format["You need one Emerald for to build this!",name player], "PLAIN DOWN"]; };
 							_canBuildGarage = true;
+						} else {
+							if(!_hasLevel3)then{
+							cutText [format["You need a Level 3 house first!",name player,_name], "PLAIN DOWN"];
+							};
+							if(!_hasLG)then{
+							cutText [format["You need a Large garage first!",name player,_name], "PLAIN DOWN"];
+							};
 						};	
-						if(_houselevel in ["SHH","SHB"] && _hasLevel1 && _hasLevel2 && _hasLevel3 && !_hasSH) then {
+						if(_houselevel in ["SHH","SHB"] && _hasLevel3 && !_hasSH) then {
 							_canBuildSH = true;
+						} else {
+							if (_hasSH)then{
+							cutText [format["%1 you already have a Stronghold! You can only own one!",name player,_name], "PLAIN DOWN"];
+							};
+							if(!_hasLevel3)then{
+								cutText [format["You need a Level 3 house first!",name player,_name], "PLAIN DOWN"];
+							};
 						};
 					};
 					

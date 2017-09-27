@@ -3,6 +3,7 @@ private ["_objects","_count","_onLadder","_isWater","_cancel","_reason","_canBui
 if(dayz_actionInProgress) exitWith { cutText [ "ORIGINS: Building already in progress. " , "PLAIN DOWN"]; };
 dayz_actionInProgress = true;
 
+
 _objects = nearestObjects [player, DZE_maintainClasses, (DZE_PlotPole select 0)];
 _count = count _objects;
 if (_count > DZE_BuildingLimit) exitWith { dayz_actionInProgress = false; cutText ["ORIGINS: Cannot build, too many objects within plot pole area.","PLAIN DOWN"]; };
@@ -86,7 +87,7 @@ _findNearestPole = [];
 _IsNearPlot = count (_findNearestPole);
 
 // If item is plot pole && another one exists within 45m
-if(_isPole && _IsNearPlot > 0) exitWith {  dayz_actionInProgress = false; cutText [ "ORIGINS: Need to be near a PlotPole!" , "PLAIN DOWN"]; };
+if(_isPole && _IsNearPlot > 0) exitWith {  dayz_actionInProgress = false; cutText [ "ORIGINS: To close to another PlotPole!" , "PLAIN DOWN"]; };
 
 if(_IsNearPlot == 0) then {  // no plot pole close
 	// Allow building of plot
@@ -439,55 +440,65 @@ if (_hasrequireditem) then {
 						owner_B1 set [count owner_B1, _playerUID];
 						publicVariable "owner_B1";
 						player setVariable["DZE_Origins_Level1",true,true];
+
 					};
 					case 'B2' : {
 						owner_B2 set [count owner_B2, _playerUID];
 						publicVariable "owner_B2";
 						player setVariable["DZE_Origins_Level2",true,true];
+
 					};
 					case 'B3' : {
 						owner_B3 set [count owner_B3, _playerUID];
 						publicVariable "owner_B3";
 						player setVariable["DZE_Origins_Level3",true,true];
+
 					};
 					case 'H1' : {
 						owner_H1 set [count owner_H1, _playerUID];
 						publicVariable "owner_H1";
 						player setVariable["DZE_Origins_Level1",true,true];
+
 					};
 					case 'H2' : {
 						owner_H2 set [count owner_H2, _playerUID];
 						publicVariable "owner_H2";
 						player setVariable["DZE_Origins_Level2",true,true];
+
 					};
 					case 'H3' : {
 						owner_H3 set [count owner_H3, _playerUID];
 						publicVariable "owner_H3";
 						player setVariable["DZE_Origins_Level3",true,true];
+
 					};
 					case 'SGH';
 					case 'SGB' : {
 						owner_SG set [count owner_SG, _playerUID];
 						publicVariable "owner_SG";
 						player setVariable["DZE_Origins_SG",true,true];
+
 					};
 					case 'LGH';
 					case 'LGB' : {
 						owner_LG set [count owner_LG, _playerUID];
 						publicVariable "owner_LG";
 						player setVariable["DZE_Origins_LG",true,true];
+
 					};
 					case 'KINGH';
 					case 'KINGB' : {
 						owner_KING set [count owner_KING, _playerUID];
 						publicVariable "owner_KING";
 						player setVariable["DZE_Origins_KING",true,true];
+
 					};
 					case 'SHH';
 					case 'SHB' : {
 						owner_SH set [count owner_SH, _playerUID];
 						publicVariable "owner_SH";
 						player setVariable["DZE_Origins_SH",true,true];
+
 					};
 				};
 				
@@ -504,7 +515,7 @@ if (_hasrequireditem) then {
 					uiSleep 5;
 					//[player,3] call GiveXP;
 				} else {
-					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
+					PVDZ_obj_Publish = [dayz_playerUID,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
 					publicVariableServer  "PVDZ_obj_Publish";
 					player removeMagazine _buildingpart;
 					//cutText [format["You have build %1. DO NOT place gear in Origins buildings! Items wont safe!", _name], "PLAIN DOWN",5];
@@ -538,7 +549,7 @@ if (_hasrequireditem) then {
 			"ORIGINS: Cancelled building. Interrupted" call dayz_rollingMessages;
 		};
 	} else {
-		format[ "ORIGINS: Cancelled construction of %1, %2.",_text,_reason] call dayz_rollingMessages;
+		format[ "ORIGINS: Cancelled construction - %1.",_reason] call dayz_rollingMessages;
 	};
 };
 
