@@ -504,14 +504,14 @@ if (_hasrequireditem) then {
 				
 				
 				if (_classname in DZE_Origins_Stronghold) then {
-				
-					PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
+					PVDZ_obj_Publish = [dayz_playerUID,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
+					//PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID],[]];
 					//PVDZ_obj_Publish = [_tmpbuilt,[_dir,_location,_playerUID],_classname,true,dayz_combination,_activatingPlayer];
 					publicVariableServer  "PVDZ_obj_Publish";
 					player removeMagazine _buildingpart;
 					player removeMagazine "ItemEmerald";
-					cutText [format[ "ORIGINS: You have setup your %2. Combination is %1",_combination,_name], "PLAIN DOWN", 5];
-					systemChat format["ORIGINS: You have setup your %2. Combination is %1",_combination,_name];					
+					cutText [format[ "ORIGINS: You have setup your %2. No Combination needed.",_combination,_name], "PLAIN DOWN", 5];
+					systemChat format["ORIGINS: You have setup your %2. No Combination needed.",_combination,_name];					
 					uiSleep 5;
 					//[player,3] call GiveXP;
 				} else {

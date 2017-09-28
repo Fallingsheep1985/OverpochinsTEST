@@ -10,7 +10,7 @@ _combinationEntry = _this select 4;
 _combinationStronghold = _originsBuilding getVariable ["CharacterID","0"];
 
 //if(_playerUID != _ownerUID && !(_typeOfOriginsBuilding in DZE_Origins_Stronghold)) exitWith { diag_log("Origins: House is not yours");};
-if(_typeOfOriginsBuilding in DZE_Origins_Stronghold && _combinationEntry != _combinationStronghold) exitWith{diag_log("Origins: Wrong Stronghold Code");};
+//if(_typeOfOriginsBuilding in DZE_Origins_Stronghold && _combinationEntry != _combinationStronghold) exitWith{diag_log("Origins: Wrong Stronghold Code");};
 
 if(!_action) then {
 	_state = 1;

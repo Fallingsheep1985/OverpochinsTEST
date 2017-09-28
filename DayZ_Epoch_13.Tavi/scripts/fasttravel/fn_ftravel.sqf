@@ -14,7 +14,6 @@ _distPriceMult = 0.005; //(price = distance * _distPriceMult)
 _distTimeMultip = 5; //(time = distance * _distTimeMultip)
 _Citys = ["ftravel_Sabina","ftravel_Martin","ftravel_Dalnogorsk","ftravel_Yaroslav","ftravel_Lyepestok","ftravel_Etanvosk","ftravel_Stari_Sad","ftravel_Seven","ftravel_Mitrovice","ftravel_Chernovar","ftravel_Branibor","ftravel_Baranovka","ftravel_Vladamir","ftravel_Biysh"];	//These have to be markers!!! - Marker names will be displayed as the name of the location
 
-
 //lb sel change
 if (_mode == 1) exitwith {
 	_index = lbCurSel 147413;
@@ -144,7 +143,9 @@ if (_mode == 3) exitwith {
 		//finish
 		_txt = parseText (format ["<t shadow='true'><t shadowColor='#ff0000'><t align='center'><t underline='1'><t color='#15FF00'><t size='1.8'>Fast Travel System</t></t></t></t></t></t><br/><br/>Welcome to %1 %2!",markerText _dest,name player,_Price]);
 		hint _txt;
+		player removeMagazine "ItemRuby";
 	} else {
+		player removeMagazine "ItemRuby";
 		_randomposition = [_destPos, 0, 5, 0, 0, 2000, 0] call BIS_fnc_findSafePos;
 		player setPos _randomposition;
 		//finish
