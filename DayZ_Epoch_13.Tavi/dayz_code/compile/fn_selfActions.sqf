@@ -553,11 +553,11 @@ if (_canBuildOnPlot) then{
 			if (sub_Up < 0) then {
 					sub_Up = _vehicle addAction ["Rise","origins\sub_down.sqf",0,5,false,true];
 				};   
-		   } else {
+			} else {
 			   if (sub_down < 0) then {
 					sub_Down = _vehicle addAction ["Submerge","origins\sub_up.sqf",1,5,false,true];
+				};
 			};
-		 };
 	} else {
 	   _vehicle removeAction sub_Up;
 	   sub_Up = -1;
@@ -1568,6 +1568,10 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 	s_player_plot_boundary = -1;
 	player removeAction s_player_plotManagement;
 	s_player_plotManagement = -1;
+	player removeAction sub_up;
+	sub_up = -1;
+	player removeAction sub_down;
+	sub_down = -1;
 	{dayz_myCursorTarget removeAction _x} count s_player_repairActions;s_player_repairActions = [];
 	player removeAction s_player_repair_crtl;
 	s_player_repair_crtl = -1;
